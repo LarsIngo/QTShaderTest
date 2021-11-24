@@ -13,47 +13,58 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick ShaderTools REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick ShaderTools REQUIRED)
-
-set(PROJECT_SOURCES
-        main.cpp
-        qml.qrc
+find_package(Qt6 COMPONENTS
+    Core
+    Quick
+    ShaderTools
+    REQUIRED
 )
 
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(${PROJECT_NAME}
-        MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
-    )
-# Define target properties for Android with Qt 6 as:
-#    set_property(TARGET ${PROJECT_NAME} APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
-# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
-else()
-    if(ANDROID)
-        add_library(${PROJECT_NAME} SHARED
-            ${PROJECT_SOURCES}
-        )
-# Define properties for Android with Qt 5 after find_package() calls as:
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-    else()
-        add_executable(${PROJECT_NAME}
-          ${PROJECT_SOURCES}
-        )
-    endif()
-endif()
+set(PROJECT_SOURCES
+    main.cpp
+    #qml.qrc #TODOremove
+)
+
+set(PROJECT_HEADERS
+)
+
+set(PROJECT_RESOURCES
+    "images/spellscaper.png"
+    "main.qml"
+    "MyShaderEffect.qml"
+)
+
+qt_add_executable(${PROJECT_NAME}
+    ${PROJECT_SOURCES}
+    ${PROJECT_HEADERS}
+)
 
 target_compile_definitions(${PROJECT_NAME}
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
-target_link_libraries(${PROJECT_NAME}
-  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
 
-set_target_properties(${PROJECT_NAME} PROPERTIES
-    MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
-    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    Qt6::Core
+    Qt6::Quick
 )
+
+qt6_add_resources(${PROJECT_NAME} "resources"
+    PREFIX
+        "/"
+    FILES
+        ${PROJECT_RESOURCES}
+)
+
+qt6_add_shaders(${PROJECT_NAME} "shaders"
+    BATCHABLE
+    PRECOMPILE
+    OPTIMIZED
+    PREFIX
+        "/"
+    FILES
+        "shaders/wiggleblender.frag"
+        "shaders/wiggleblender.vert"
+)
+
 
 # https://doc.qt.io/qt-6/qtshadertools-build.html
 # https://99designs.com/logo-design/contests/design-iconic-logo-indie-game-studio-1127780/entries
@@ -69,7 +80,9 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 #        "shaders/wiggleblender.frag"
 #)
 
-if(QT_VERSION_MAJOR EQUAL 6)
-    qt_import_qml_plugins(${PROJECT_NAME})
-    qt_finalize_executable(${PROJECT_NAME})
-endif()
+
+#qt_import_qml_plugins(${PROJECT_NAME})
+#qt_finalize_executable(${PROJECT_NAME})
+
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)

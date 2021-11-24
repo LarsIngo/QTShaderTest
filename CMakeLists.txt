@@ -27,10 +27,13 @@ set(PROJECT_SOURCES
 set(PROJECT_HEADERS
 )
 
-set(PROJECT_RESOURCES
-    "images/spellscaper.png"
+set(PROJECT_QMLS
     "main.qml"
     "MyShaderEffect.qml"
+)
+
+set(PROJECT_IMAGES
+    "images/spellscaper.png"
 )
 
 set(PROJECT_SHADERS
@@ -55,7 +58,8 @@ qt6_add_resources(${PROJECT_NAME} "resources"
     PREFIX
         "/"
     FILES
-        ${PROJECT_RESOURCES}
+        ${PROJECT_QMLS}
+        ${PROJECT_IMAGES}
 )
 
 qt6_add_shaders(${PROJECT_NAME} "shaders"

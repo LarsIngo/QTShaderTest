@@ -16,6 +16,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt6 COMPONENTS
     Core
     Quick
+    Multimedia
     ShaderTools
     REQUIRED
 )
@@ -57,6 +58,7 @@ target_compile_definitions(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Core
     Qt6::Quick
+    Qt6::Multimedia
 )
 
 qt6_add_resources(${PROJECT_NAME} "resources"

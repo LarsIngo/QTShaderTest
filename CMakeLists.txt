@@ -22,7 +22,6 @@ find_package(Qt6 COMPONENTS
 
 set(PROJECT_SOURCES
     main.cpp
-    #qml.qrc #TODOremove
 )
 
 set(PROJECT_HEADERS
@@ -32,6 +31,11 @@ set(PROJECT_RESOURCES
     "images/spellscaper.png"
     "main.qml"
     "MyShaderEffect.qml"
+)
+
+set(PROJECT_SHADERS
+    "shaders/wiggleblender.frag"
+    "shaders/wiggleblender.vert"
 )
 
 qt_add_executable(${PROJECT_NAME}
@@ -61,28 +65,8 @@ qt6_add_shaders(${PROJECT_NAME} "shaders"
     PREFIX
         "/"
     FILES
-        "shaders/wiggleblender.frag"
-        "shaders/wiggleblender.vert"
+        ${PROJECT_SHADERS}
 )
-
-
-# https://doc.qt.io/qt-6/qtshadertools-build.html
-# https://99designs.com/logo-design/contests/design-iconic-logo-indie-game-studio-1127780/entries
-#qt6_add_shaders(${PROJECT_NAME} "porting-example-shaders"
-#    #GLSL "300es,330"
-#    BATCHABLE
-#    PRECOMPILE
-#    OPTIMIZED
-#    PREFIX
-#        "/shaders"
-#    FILES
-#        "shaders/wiggleblender.vert"
-#        "shaders/wiggleblender.frag"
-#)
-
-
-#qt_import_qml_plugins(${PROJECT_NAME})
-#qt_finalize_executable(${PROJECT_NAME})
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)

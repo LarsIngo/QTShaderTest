@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>MyShaderEffect.qml</file>
+        <file>images/spellscaper.png</file>
+        <file>shaders/wiggleblender.frag</file>
+        <file>shaders/wiggleblender.vert</file>
+        <file>shaders/wiggleblender.frag.qsb</file>
+        <file>shaders/wiggleblender.vert.qsb</file>
+    </qresource>
+</RCC>

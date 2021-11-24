@@ -29,7 +29,7 @@ set(PROJECT_HEADERS
 
 set(PROJECT_QMLS
     "main.qml"
-    "MyShaderEffect.qml"
+    "ImageFX.qml"
 )
 
 set(PROJECT_IMAGES

@@ -18,8 +18,11 @@ Window {
         source: "images/spellscaper.png"
     }*/
 
-    MyShaderEffect {
+    ImageFX {
         anchors.fill: parent
+        source: "qrc:/images/spellscaper.png"
+        vertexShader: "qrc:/shaders/wiggleblender.vert.qsb"
+        fragmentShader: "qrc:/shaders/wiggleblender.frag.qsb"
     }
 }
 

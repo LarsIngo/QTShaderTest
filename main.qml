@@ -19,10 +19,25 @@ Window {
     }*/
 
     ImageFX {
-        anchors.fill: parent
-        source: "qrc:/images/spellscaper.png"
+        anchors.centerIn: parent
+        //anchors.fill: parent
+        source: "qrc:/images/triangle.png"
         vertexShader: "qrc:/shaders/wiggleblender.vert.qsb"
         fragmentShader: "qrc:/shaders/wiggleblender.frag.qsb"
+
+        RotationAnimator on rotation {
+            from: 0;
+            to: 360;
+            duration: 1000
+            loops: Animation.Infinite
+        }
+
+        ScaleAnimator on scale {
+            from: 0;
+            to: 1;
+            duration: 1000
+            loops: Animation.Infinite
+        }
     }
 }
 

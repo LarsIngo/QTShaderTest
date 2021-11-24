@@ -34,6 +34,11 @@ set(PROJECT_QMLS
 
 set(PROJECT_IMAGES
     "images/spellscaper.png"
+    "images/triangle.png"
+)
+
+set(PROJECT_SOUNDS
+    "sounds/ping01.wav"
 )
 
 set(PROJECT_SHADERS
@@ -60,6 +65,7 @@ qt6_add_resources(${PROJECT_NAME} "resources"
     FILES
         ${PROJECT_QMLS}
         ${PROJECT_IMAGES}
+        ${PROJECT_SOUNDS}
 )
 
 qt6_add_shaders(${PROJECT_NAME} "shaders"

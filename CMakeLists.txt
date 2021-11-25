@@ -29,8 +29,9 @@ set(PROJECT_HEADERS
 )
 
 set(PROJECT_QMLS
-    "main.qml"
-    "ImageFX.qml"
+    "qmls/main.qml"
+    "qmls/ImageFX.qml"
+    "qmls/TestLabel.qml"
 )
 
 set(PROJECT_IMAGES

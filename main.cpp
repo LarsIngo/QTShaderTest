@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QtMultimedia>
+#include <QtQuick>
 
 int main(int argc, char *argv[])
 {
@@ -11,12 +12,21 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
-    const QUrl url(QStringLiteral("qrc:/main.qml"));
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
-                     &app, [url](QObject *obj, const QUrl &objUrl) {
-        if (!obj && url == objUrl)
-            QCoreApplication::exit(-1);
-    }, Qt::QueuedConnection);
+
+    const QUrl url(QStringLiteral("qrc:/qmls/main.qml"));
+
+    QObject::connect(
+        &engine,
+        &QQmlApplicationEngine::objectCreated,
+        &app,
+        [url](QObject *obj, const QUrl &objUrl)
+        {
+            if (!obj && url == objUrl) {
+                QCoreApplication::exit(-1);
+            }
+        },
+        Qt::QueuedConnection);
+
     engine.load(url);
 
     QSoundEffect effect;
@@ -24,6 +34,14 @@ int main(int argc, char *argv[])
     effect.setLoopCount(QSoundEffect::Infinite);
     effect.setVolume(0.25f);
     effect.play();
+
+/*
+    // Using QQuickView
+    QQuickView view;
+    view.setSource(QStringLiteral("qrc:/qmls/TestLabel.qml"));
+    view.show();
+    QObject *object = view.rootObject();
+        */
 
     return app.exec();
 }

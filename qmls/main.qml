@@ -14,7 +14,7 @@ Window {
 
     Image {
         anchors.fill: parent
-        source: "images/map.png"
+        source: "qrc:/images/map.png"
     }
 
     ShaderEffect

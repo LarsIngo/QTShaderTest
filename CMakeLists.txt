@@ -43,8 +43,8 @@ set(PROJECT_SOUNDS
 )
 
 set(PROJECT_SHADERS
-    "shaders/wiggleblender.frag"
-    "shaders/wiggleblender.vert"
+    "shaders/ping.frag"
+    "shaders/ping.vert"
 )
 
 qt_add_executable(${PROJECT_NAME}

@@ -22,9 +22,10 @@ Window {
         anchors.centerIn: parent
         //anchors.fill: parent
         source: "qrc:/images/triangle.png"
-        vertexShader: "qrc:/shaders/wiggleblender.vert.qsb"
-        fragmentShader: "qrc:/shaders/wiggleblender.frag.qsb"
+        vertexShader: "qrc:/shaders/ping.vert.qsb"
+        fragmentShader: "qrc:/shaders/ping.frag.qsb"
 
+        /*
         RotationAnimator on rotation {
             from: 0;
             to: 360;
@@ -38,6 +39,7 @@ Window {
             duration: 1000
             loops: Animation.Infinite
         }
+        */
     }
 }
 

@@ -11,9 +11,21 @@ Image {
           NumberAnimation on time {
             from: 0
             to: 1
-            duration: 1000
+            duration: 3000
             loops: Animation.Infinite
+            easing: easing.type.OutExpo
           }
+
+        property real alpha
+          NumberAnimation on alpha {
+            from: 0
+            to: 1
+            duration: 3000
+            loops: Animation.Infinite
+            easing: easing.type.InExpo
+          }
+
+        property real threshold: 0.01
 
         property variant src: img
         width: img.width; height: img.height

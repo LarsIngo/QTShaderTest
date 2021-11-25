@@ -1,7 +1,6 @@
 import QtQuick 2.0
 
 Image {
-    id: img;
     property string vertexShader
     property string fragmentShader
 
@@ -16,8 +15,8 @@ Image {
             easing: easing.type.OutExpo
           }
 
-        property real alpha
-          NumberAnimation on alpha {
+        property real alphaOverTime
+          NumberAnimation on alphaOverTime {
             from: 0
             to: 1
             duration: 3000
@@ -27,9 +26,10 @@ Image {
 
         property real threshold: 0.01
 
-        property variant src: img
-        width: img.width; height: img.height
-        vertexShader: img.vertexShader
-        fragmentShader: img.fragmentShader
+        property variant src: parent
+        width: parent.width;
+        height: parent.height
+        vertexShader: parent.vertexShader
+        fragmentShader: parent.fragmentShader
     }
 }

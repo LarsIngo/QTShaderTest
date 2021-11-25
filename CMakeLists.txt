@@ -36,6 +36,7 @@ set(PROJECT_QMLS
 set(PROJECT_IMAGES
     "images/spellscaper.png"
     "images/triangle.png"
+    "images/map.png"
 )
 
 set(PROJECT_SOUNDS

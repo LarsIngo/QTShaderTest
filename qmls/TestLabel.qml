@@ -1,5 +1,14 @@
 import QtQuick 2.0
 
-Text {
-    text: "hej"
+Rectangle {
+    color: "red"
+    width: 50
+    height: 50
+
+    Text {
+        anchors.centerIn: parent
+        color: "green"
+        text: "HEJ"
+    }
 }
+

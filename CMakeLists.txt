@@ -23,21 +23,26 @@ find_package(Qt6 COMPONENTS
 
 set(PROJECT_SOURCES
     main.cpp
+    utility.cpp
 )
 
 set(PROJECT_HEADERS
+    utility.hpp
 )
 
 set(PROJECT_QMLS
     "qmls/main.qml"
     "qmls/ImageFX.qml"
     "qmls/TestLabel.qml"
+    "qmls/PingFX.qml"
+    "qmls/RadarFX.qml"
 )
 
 set(PROJECT_IMAGES
     "images/spellscaper.png"
     "images/triangle.png"
     "images/map.png"
+    "images/radarNoise.png"
 )
 
 set(PROJECT_SOUNDS
@@ -47,6 +52,8 @@ set(PROJECT_SOUNDS
 set(PROJECT_SHADERS
     "shaders/ping.frag"
     "shaders/ping.vert"
+    "shaders/radar.frag"
+    "shaders/radar.vert"
 )
 
 qt_add_executable(${PROJECT_NAME}

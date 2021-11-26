@@ -1,47 +1,53 @@
 #include <QGuiApplication>
-#include <QQmlApplicationEngine>
-#include <QtMultimedia>
+#include <QQmlEngine>
 #include <QtQuick>
+#include <QtMultimedia>
 
 int main(int argc, char *argv[])
 {
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-#endif
-
     QGuiApplication app(argc, argv);
 
-    QQmlApplicationEngine engine;
+    QQuickWindow::setDefaultAlphaBuffer(true);
 
-    const QUrl url(QStringLiteral("qrc:/qmls/main.qml"));
+    QQmlEngine engine;
+    QQmlComponent windowComponent(&engine, QUrl("qrc:/qmls/main.qml"));
+    QQuickWindow* window = qobject_cast<QQuickWindow*>(windowComponent.create());
+    //qDebug() << window;
 
-    QObject::connect(
-        &engine,
-        &QQmlApplicationEngine::objectCreated,
-        &app,
-        [url](QObject *obj, const QUrl &objUrl)
-        {
-            if (!obj && url == objUrl) {
-                QCoreApplication::exit(-1);
-            }
-        },
-        Qt::QueuedConnection);
+    /*
+    {
+        QSoundEffect effect;
+        effect.setSource(QUrl("qrc:/sounds/ping01.wav"));
+        effect.setLoopCount(QSoundEffect::Infinite);
+        effect.setVolume(0.25f);
+        effect.play();
+    }
+    */
 
-    engine.load(url);
+    /*
+    {
+        QQmlComponent objectComp(&engine, QUrl("qrc:/qmls/PingFX.qml"));
+        QQuickItem* object = qobject_cast<QQuickItem*>(objectComp.create());
+        QQmlEngine::setObjectOwnership(object, QQmlEngine::CppOwnership);
+        object->setParentItem(window->contentItem());
+        object->setParent(&engine);
+    }
+    */
 
-    QSoundEffect effect;
-    effect.setSource(QStringLiteral("qrc:/sounds/ping01.wav"));
-    effect.setLoopCount(QSoundEffect::Infinite);
-    effect.setVolume(0.25f);
-    effect.play();
+    {
+        QQmlComponent objectComp(&engine, QUrl("qrc:/qmls/RadarFX.qml"));
+        QQuickItem* object = qobject_cast<QQuickItem*>(objectComp.create());
+        QQmlEngine::setObjectOwnership(object, QQmlEngine::CppOwnership);
+        object->setParentItem(window->contentItem());
+        object->setParent(&engine);
+    }
 
-/*
-    // Using QQuickView
-    QQuickView view;
-    view.setSource(QStringLiteral("qrc:/qmls/TestLabel.qml"));
-    view.show();
-    QObject *object = view.rootObject();
-        */
+    //object->setProperty("anchors.right", "parent.right");
+    //object->setProperty("anchors.left", "parent.left");
+    //object->setProperty("x", window->width() * 0.5);
+    //object->setProperty("y", window->height() * 0.5);
+    //object->setProperty("width", 500);
+    //object->setProperty("height", 500);
 
     return app.exec();
 }

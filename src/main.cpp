@@ -3,8 +3,16 @@
 #include <QtQuick>
 #include <QtMultimedia>
 
+#include "myItem.hpp"
+
+// https://stackoverflow.com/questions/29608535/qquickview-handling-mouse-events-in-c
+// https://doc.qt.io/qt-6/qtqml-cppintegration-interactqmlfromcpp.html
+// https://stackoverflow.com/questions/68332323/custom-shaders-material-not-working-in-a-custom-qquickitem-object
+
 int main(int argc, char *argv[])
 {
+    //qmlRegisterType<MyItem>("SpellTech", 1, 0, "MyItem");
+
     QGuiApplication app(argc, argv);
 
     QQuickWindow::setDefaultAlphaBuffer(true);
@@ -40,6 +48,10 @@ int main(int argc, char *argv[])
         QQmlEngine::setObjectOwnership(object, QQmlEngine::CppOwnership);
         object->setParentItem(window->contentItem());
         object->setParent(&engine);
+
+        MyItem myItem;
+        QObject::connect(object, SIGNAL(qmlSignal(QString)),
+                         &myItem, SLOT(cppSlot(QString)));
     }
 
     //object->setProperty("anchors.right", "parent.right");

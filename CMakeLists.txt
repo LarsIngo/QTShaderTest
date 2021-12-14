@@ -22,12 +22,16 @@ find_package(Qt6 COMPONENTS
 )
 
 set(PROJECT_SOURCES
-    main.cpp
-    utility.cpp
+    "src/main.cpp"
+    "src/myItem.cpp"
+    "src/utility.cpp"
+    "src/window.cpp"
 )
 
 set(PROJECT_HEADERS
-    utility.hpp
+    "src/myItem.hpp"
+    "src/utility.hpp"
+    "src/window.hpp"
 )
 
 set(PROJECT_QMLS
@@ -36,6 +40,7 @@ set(PROJECT_QMLS
     "qmls/TestLabel.qml"
     "qmls/PingFX.qml"
     "qmls/RadarFX.qml"
+    "qmls/MyItem.qml"
 )
 
 set(PROJECT_IMAGES
@@ -62,9 +67,9 @@ qt_add_executable(${PROJECT_NAME}
 )
 
 target_compile_definitions(${PROJECT_NAME}
-  PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
+  PUBLIC $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE
+target_link_libraries(${PROJECT_NAME} PUBLIC
     Qt6::Core
     Qt6::Quick
     Qt6::Multimedia

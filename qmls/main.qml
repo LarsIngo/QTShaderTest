@@ -1,5 +1,17 @@
+import QtQuick
+import QtQuick.Controls
+import SpellScaper
+
+Window {
+    width: 400
+    height: 400
+    visible: true
+}
+
+/*
 import QtQuick 2.0
 import QtQuick.Window
+
 
 Window
 {
@@ -13,21 +25,5 @@ Window
         anchors.fill: parent
         source: "qrc:/images/map.png"
     }
-
-    /*Rectangle
-    {
-        color: "red"
-        anchors.fill: parent
-    }
-
-    MyItem
-    {
-         anchors.fill: parent
-    }*/
 }
-
-/*##^##
-Designer {
-    D{i:0;height:1080;width:1920}
-}
-##^##*/
+*/

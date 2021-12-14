@@ -1,17 +1,16 @@
 #pragma once
-/*
-class QQmlEngine;
-class QObject;
 
-class Utility
+#include <QtQuick>
+
+class Window : public QQuickItem
 {
 public:
-    static QObject CreateView(const QQmlEngine& engine)
-    {
-        return nullptr;
+    Window() {
+        setAcceptedMouseButtons(Qt::AllButtons);
     }
 
-private:
-    Utility() {}
+    void mousePressEvent(QMouseEvent *event) {
+        QQuickItem::mousePressEvent(event);
+        qDebug() << event->pos();
+    }
 };
-*/

@@ -4,6 +4,7 @@
 #include <QtMultimedia>
 
 #include "myItem.hpp"
+#include "Window.hpp"
 
 // https://stackoverflow.com/questions/29608535/qquickview-handling-mouse-events-in-c
 // https://doc.qt.io/qt-6/qtqml-cppintegration-interactqmlfromcpp.html
@@ -14,7 +15,7 @@ int main(int argc, char *argv[])
     //qmlRegisterType<MyItem>("SpellTech", 1, 0, "MyItem");
 
     QGuiApplication app(argc, argv);
-
+    qmlRegisterType<Window>("SpellScaper", 1, 0, "Window");
     //QQuickWindow::setDefaultAlphaBuffer(true);
 
     //QQmlEngine engine;
@@ -42,7 +43,11 @@ int main(int argc, char *argv[])
     }
     */
 
+    QQuickView *view = new QQuickView;
+    view->setSource(QUrl("qrc:/qmls/main.qml"));
+    view->show();
 
+/*
         QQuickView view(QUrl("qrc:/qmls/MyItem.qml"));
         QObject *item = view.rootObject();
 
@@ -50,7 +55,7 @@ int main(int argc, char *argv[])
         QObject::connect(item, SIGNAL(qmlSignal(QString)), &myClass, SLOT(cppSlot(QString)));
 
         view.show();
-
+*/
     /*
     {
         QQmlComponent objectComp(&engine, QUrl("qrc:/qmls/RadarFX.qml"));

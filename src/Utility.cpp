@@ -4,17 +4,14 @@ namespace SpellScaper
 {
     Utility::Utility()
     {
-        /*
-        QQmlComponent objectComp(&engine, QUrl("qrc:/qmls/PingFX.qml"));
-        QQuickItem* object = qobject_cast<QQuickItem*>(objectComp.create());
-        QQmlEngine::setObjectOwnership(object, QQmlEngine::CppOwnership);
-        object->setParentItem(window->contentItem());
-        object->setParent(&engine);
-        */
+        this->engine = new QQmlEngine();
     }
 
     Utility::~Utility()
     {
+        delete this->engine;
+        delete this->app;
+        delete this->window;
     }
 
     Utility& Utility::Instance()
@@ -23,9 +20,28 @@ namespace SpellScaper
         return instance;
     }
 
-    QQmlEngine& Utility::Engine()
+    QGuiApplication* Utility::Initialize(int argc, char *argv[])
+    {
+        Utility::Instance().app = new QGuiApplication(argc, argv);
+        QQmlComponent windowComponent(SpellScaper::Utility::Engine(), QUrl("qrc:/qmls/main.qml"));
+        SpellScaper::Utility::Instance().window = qobject_cast<QQuickWindow*>(windowComponent.create());
+
+        return Utility::App();
+    }
+
+    QGuiApplication* Utility::App()
+    {
+        return Utility::Instance().app;
+    }
+
+    QQmlEngine* Utility::Engine()
     {
         return Utility::Instance().engine;
+    }
+
+    QQuickWindow* Utility::Window()
+    {
+        return Utility::Instance().window;
     }
 }
 

@@ -7,6 +7,7 @@ namespace SpellScaper
 {
     class Map : public QQuickItem
     {
+        Q_OBJECT
     private:
         QSoundEffect soundEffect;
     public:

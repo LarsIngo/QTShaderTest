@@ -1,4 +1,6 @@
 #include "Map.hpp"
+#include "Ping.hpp"
+#include "Utility.hpp"
 
 namespace SpellScaper
 {
@@ -14,14 +16,19 @@ namespace SpellScaper
     {
     }
 
-    void Map::mousePressEvent(QMouseEvent *event)
+    void Map::mousePressEvent(QMouseEvent* event)
     {
         QQuickItem::mousePressEvent(event);
         qDebug() << event->pos();
 
-        if (!this->soundEffect.isPlaying())
+        if (event->buttons() == Qt::RightButton)
         {
-             this->soundEffect.play();
+            this->soundEffect.play();
+            Ping* ping = SpellScaper::Utility::Instantiate<Ping>(QUrl("qrc:/qmls/Ping.qml"));
+        }
+        else
+        {
+            QQuickItem* radar = SpellScaper::Utility::Instantiate<QQuickItem>(QUrl("qrc:/qmls/RadarFX.qml"));
         }
     }
 }

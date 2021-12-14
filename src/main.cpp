@@ -21,11 +21,14 @@ int main(int argc, char *argv[])
 {
     RegisterTypes();
 
-    QGuiApplication app(argc, argv);
+    QGuiApplication* app = SpellScaper::Utility::Initialize(argc, argv);
 
-    QQmlComponent windowComponent(&SpellScaper::Utility::Engine(), QUrl("qrc:/qmls/main.qml"));
-    QQuickWindow* window = qobject_cast<QQuickWindow*>(windowComponent.create());
-    qDebug() << window;
+    //QQmlComponent windowComponent(&SpellScaper::Utility::Engine(), QUrl("qrc:/qmls/main.qml"));
+    //QQuickWindow* window = qobject_cast<QQuickWindow*>(windowComponent.create());
+    //qDebug() << window;
+
+    //QQuickItem* item = SpellScaper::Utility::Instantiate<QQuickItem>(window, QUrl("qrc:/qmls/PingFX.qml"));
+    //delete item;
 
     /*
     {
@@ -70,5 +73,5 @@ int main(int argc, char *argv[])
     //object->setProperty("width", 500);
     //object->setProperty("height", 500);
 
-    return app.exec();
+    return app->exec();
 }

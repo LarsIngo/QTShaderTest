@@ -26,17 +26,6 @@ int main(int argc, char *argv[])
     QQuickWindow* window = qobject_cast<QQuickWindow*>(windowComponent.create());
     qDebug() << window;
 
-    /*
-    {
-        QSoundEffect effect;
-        effect.setSource(QUrl("qrc:/sounds/ping01.wav"));
-        effect.setLoopCount(QSoundEffect::Infinite);
-        effect.setVolume(0.25f);
-        effect.play();
-    }
-    */
-
-    /*
     {
         QQmlComponent objectComp(&engine, QUrl("qrc:/qmls/PingFX.qml"));
         QQuickItem* object = qobject_cast<QQuickItem*>(objectComp.create());
@@ -44,7 +33,6 @@ int main(int argc, char *argv[])
         object->setParentItem(window->contentItem());
         object->setParent(&engine);
     }
-    */
 
     //QQuickWindow *window = new QQuickWindow();
     //window->setSource(QUrl("qrc:/qmls/WindowQML.qml"));

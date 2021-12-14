@@ -23,24 +23,18 @@ find_package(Qt6 COMPONENTS
 
 set(PROJECT_SOURCES
     "src/main.cpp"
-    "src/myItem.cpp"
-    "src/utility.cpp"
     "src/Map.cpp"
 )
 
 set(PROJECT_HEADERS
-    "src/myItem.hpp"
-    "src/utility.hpp"
     "src/Map.hpp"
 )
 
 set(PROJECT_QMLS
     "qmls/main.qml"
     "qmls/ImageFX.qml"
-    "qmls/TestLabel.qml"
     "qmls/PingFX.qml"
     "qmls/RadarFX.qml"
-    "qmls/MyItem.qml"
     "qmls/Map.qml"
 )
 
@@ -53,6 +47,7 @@ set(PROJECT_IMAGES
 
 set(PROJECT_SOUNDS
     "sounds/ping01.wav"
+    "sounds/ping02.wav"
 )
 
 set(PROJECT_SHADERS

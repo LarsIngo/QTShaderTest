@@ -5,6 +5,9 @@ namespace SpellScaper
     Map::Map() : QQuickItem()
     {
         setAcceptedMouseButtons(Qt::AllButtons);
+
+        this->soundEffect.setSource(QUrl("qrc:/sounds/ping02.wav"));
+        this->soundEffect.setVolume(0.25f);
     }
 
     Map::~Map()
@@ -15,6 +18,11 @@ namespace SpellScaper
     {
         QQuickItem::mousePressEvent(event);
         qDebug() << event->pos();
+
+        if (!this->soundEffect.isPlaying())
+        {
+             this->soundEffect.play();
+        }
     }
 }
 

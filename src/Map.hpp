@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QtMultimedia>
 #include <QtQuick>
 
 namespace SpellScaper
@@ -7,7 +8,7 @@ namespace SpellScaper
     class Map : public QQuickItem
     {
     private:
-
+        QSoundEffect soundEffect;
     public:
         Map();
         virtual ~Map();

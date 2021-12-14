@@ -1,17 +1,14 @@
+// MyItem.qml
 import QtQuick 2.0
 
-Rectangle {
-    anchors.fill: parent
-    color: "red"
-    /*
-    width: 50
-    height: 50
+Item {
+    id: item
+    width: 100; height: 100
 
-    Text {
-        anchors.centerIn: parent
-        color: "green"
-        text: "HEJ"
+    signal qmlSignal(msg: string)
+
+    MouseArea {
+        anchors.fill: parent
+        onClicked: item.qmlSignal("Hello from QML")
     }
-    */
 }
-

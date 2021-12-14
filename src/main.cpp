@@ -15,11 +15,11 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-    QQuickWindow::setDefaultAlphaBuffer(true);
+    //QQuickWindow::setDefaultAlphaBuffer(true);
 
-    QQmlEngine engine;
-    QQmlComponent windowComponent(&engine, QUrl("qrc:/qmls/main.qml"));
-    QQuickWindow* window = qobject_cast<QQuickWindow*>(windowComponent.create());
+    //QQmlEngine engine;
+    //QQmlComponent windowComponent(&engine, QUrl("qrc:/qmls/main.qml"));
+    //QQuickWindow* window = qobject_cast<QQuickWindow*>(windowComponent.create());
     //qDebug() << window;
 
     /*
@@ -42,18 +42,24 @@ int main(int argc, char *argv[])
     }
     */
 
+
+        QQuickView view(QUrl("qrc:/qmls/MyItem.qml"));
+        QObject *item = view.rootObject();
+
+        MyClass myClass;
+        QObject::connect(item, SIGNAL(qmlSignal(QString)), &myClass, SLOT(cppSlot(QString)));
+
+        view.show();
+
+    /*
     {
         QQmlComponent objectComp(&engine, QUrl("qrc:/qmls/RadarFX.qml"));
         QQuickItem* object = qobject_cast<QQuickItem*>(objectComp.create());
         QQmlEngine::setObjectOwnership(object, QQmlEngine::CppOwnership);
         object->setParentItem(window->contentItem());
         object->setParent(&engine);
-
-        MyItem myItem;
-        QObject::connect(object, SIGNAL(qmlSignal(QString)),
-                         &myItem, SLOT(cppSlot(QString)));
     }
-
+*/
     //object->setProperty("anchors.right", "parent.right");
     //object->setProperty("anchors.left", "parent.left");
     //object->setProperty("x", window->width() * 0.5);

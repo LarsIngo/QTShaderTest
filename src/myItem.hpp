@@ -2,16 +2,11 @@
 
 #include <QtQuick>
 
-class MyItem : public QQuickItem
+class MyClass : public QObject
 {
-private:
-
-public:
-    MyItem();
-    ~MyItem();
-
-    void mousePressEvent(QMouseEvent *event) {
-        QQuickItem::mousePressEvent(event);
-        qDebug() << event->pos();
+    Q_OBJECT
+public slots:
+    void cppSlot(const QString &msg) {
+        qDebug() << "Called the C++ slot with message:" << msg;
     }
 };

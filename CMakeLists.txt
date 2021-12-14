@@ -24,10 +24,14 @@ find_package(Qt6 COMPONENTS
 set(PROJECT_SOURCES
     "src/main.cpp"
     "src/Map.cpp"
+    "src/Ping.cpp"
+    "src/Utility.cpp"
 )
 
 set(PROJECT_HEADERS
     "src/Map.hpp"
+    "src/Ping.hpp"
+    "src/Utility.hpp"
 )
 
 set(PROJECT_QMLS
@@ -36,6 +40,7 @@ set(PROJECT_QMLS
     "qmls/PingFX.qml"
     "qmls/RadarFX.qml"
     "qmls/Map.qml"
+    "qmls/Ping.qml"
 )
 
 set(PROJECT_IMAGES

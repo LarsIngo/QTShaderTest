@@ -10,5 +10,3 @@ SpellScaper.Map {
         source: "qrc:/images/map.png"
     }
 }
-
-

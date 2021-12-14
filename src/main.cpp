@@ -3,8 +3,9 @@
 #include <QtQuick>
 #include <QtMultimedia>
 
-#include "myItem.hpp"
+#include "Utility.hpp"
 #include "Map.hpp"
+#include "Ping.hpp"
 
 // https://stackoverflow.com/questions/29608535/qquickview-handling-mouse-events-in-c
 // https://doc.qt.io/qt-6/qtqml-cppintegration-interactqmlfromcpp.html
@@ -13,6 +14,7 @@
 void RegisterTypes()
 {
     qmlRegisterType<SpellScaper::Map>("SpellScaper", 1, 0, "Map");
+    qmlRegisterType<SpellScaper::Ping>("SpellScaper", 1, 0, "Ping");
 }
 
 int main(int argc, char *argv[])
@@ -20,12 +22,12 @@ int main(int argc, char *argv[])
     RegisterTypes();
 
     QGuiApplication app(argc, argv);
-    QQmlEngine engine;
 
-    QQmlComponent windowComponent(&engine, QUrl("qrc:/qmls/main.qml"));
+    QQmlComponent windowComponent(&SpellScaper::Utility::Engine(), QUrl("qrc:/qmls/main.qml"));
     QQuickWindow* window = qobject_cast<QQuickWindow*>(windowComponent.create());
     qDebug() << window;
 
+    /*
     {
         QQmlComponent objectComp(&engine, QUrl("qrc:/qmls/PingFX.qml"));
         QQuickItem* object = qobject_cast<QQuickItem*>(objectComp.create());
@@ -33,6 +35,7 @@ int main(int argc, char *argv[])
         object->setParentItem(window->contentItem());
         object->setParent(&engine);
     }
+    */
 
     //QQuickWindow *window = new QQuickWindow();
     //window->setSource(QUrl("qrc:/qmls/WindowQML.qml"));

@@ -1,8 +1,8 @@
-#include "Utility.hpp"
+#include "Ping.hpp"
 
 namespace SpellScaper
 {
-    Utility::Utility()
+    Ping::Ping() : QQuickItem()
     {
         /*
         QQmlComponent objectComp(&engine, QUrl("qrc:/qmls/PingFX.qml"));
@@ -13,19 +13,8 @@ namespace SpellScaper
         */
     }
 
-    Utility::~Utility()
+    Ping::~Ping()
     {
-    }
-
-    Utility& Utility::Instance()
-    {
-        static Utility instance;
-        return instance;
-    }
-
-    QQmlEngine& Utility::Engine()
-    {
-        return Utility::Instance().engine;
     }
 }
 

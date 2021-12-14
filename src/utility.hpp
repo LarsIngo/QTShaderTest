@@ -1,17 +1,23 @@
 #pragma once
-/*
-class QQmlEngine;
-class QObject;
 
-class Utility
+#include <QQmlEngine>
+
+namespace SpellScaper
 {
-public:
-    static QObject CreateView(const QQmlEngine& engine)
+    class Utility
     {
-        return nullptr;
-    }
+    private:
+        Utility();
+        ~Utility();
 
-private:
-    Utility() {}
-};
-*/
+        QQmlEngine engine;
+
+        static Utility& Instance();
+    public:
+        static QQmlEngine& Engine();
+
+        Utility(Utility const&) = delete;
+        void operator=(Utility const&) = delete;
+    };
+}
+

@@ -4,25 +4,27 @@
 #include <QtMultimedia>
 
 #include "myItem.hpp"
-#include "Window.hpp"
+#include "Map.hpp"
 
-using namespace SpellScaper;
 // https://stackoverflow.com/questions/29608535/qquickview-handling-mouse-events-in-c
 // https://doc.qt.io/qt-6/qtqml-cppintegration-interactqmlfromcpp.html
 // https://stackoverflow.com/questions/68332323/custom-shaders-material-not-working-in-a-custom-qquickitem-object
 
+void RegisterTypes()
+{
+    qmlRegisterType<SpellScaper::Map>("SpellScaper", 1, 0, "Map");
+}
+
 int main(int argc, char *argv[])
 {
-    //qmlRegisterType<MyItem>("SpellTech", 1, 0, "MyItem");
+    RegisterTypes();
 
     QGuiApplication app(argc, argv);
-    qmlRegisterType<Window>("SpellScaper", 1, 0, "Window");
-    //QQuickWindow::setDefaultAlphaBuffer(true);
+    QQmlEngine engine;
 
-    //QQmlEngine engine;
-    //QQmlComponent windowComponent(&engine, QUrl("qrc:/qmls/main.qml"));
-    //QQuickWindow* window = qobject_cast<QQuickWindow*>(windowComponent.create());
-    //qDebug() << window;
+    QQmlComponent windowComponent(&engine, QUrl("qrc:/qmls/main.qml"));
+    QQuickWindow* window = qobject_cast<QQuickWindow*>(windowComponent.create());
+    qDebug() << window;
 
     /*
     {
@@ -44,9 +46,13 @@ int main(int argc, char *argv[])
     }
     */
 
-    QQuickView *view = new QQuickView;
-    view->setSource(QUrl("qrc:/qmls/main.qml"));
-    view->show();
+    //QQuickWindow *window = new QQuickWindow();
+    //window->setSource(QUrl("qrc:/qmls/WindowQML.qml"));
+    //window->show();
+
+    //QQuickView *view = new QQuickView;
+    //view->setSource(QUrl("qrc:/qmls/main.qml"));
+    //view->show();
 
 /*
         QQuickView view(QUrl("qrc:/qmls/MyItem.qml"));

@@ -4,13 +4,13 @@
 
 namespace SpellScaper
 {
-    class Window : public QQuickView
+    class Map : public QQuickItem
     {
     private:
 
     public:
-        Window();
-        virtual ~Window();
+        Map();
+        virtual ~Map();
 
         void mousePressEvent(QMouseEvent *event);
     };

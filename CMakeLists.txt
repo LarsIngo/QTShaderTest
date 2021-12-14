@@ -25,13 +25,13 @@ set(PROJECT_SOURCES
     "src/main.cpp"
     "src/myItem.cpp"
     "src/utility.cpp"
-    "src/Window.cpp"
+    "src/Map.cpp"
 )
 
 set(PROJECT_HEADERS
     "src/myItem.hpp"
     "src/utility.hpp"
-    "src/Window.hpp"
+    "src/Map.hpp"
 )
 
 set(PROJECT_QMLS
@@ -41,7 +41,7 @@ set(PROJECT_QMLS
     "qmls/PingFX.qml"
     "qmls/RadarFX.qml"
     "qmls/MyItem.qml"
-    "qmls/Window.qml"
+    "qmls/Map.qml"
 )
 
 set(PROJECT_IMAGES

@@ -30,6 +30,12 @@ namespace SpellScaper
         static T* Instantiate (const QUrl& url)
         {
             QQmlComponent comp(Utility::Engine(), url);
+            if (comp.isError())
+            {
+                qDebug() << comp.errorString();
+                return nullptr;
+            }
+
             T* item = qobject_cast<T*>(comp.create());
             QQmlEngine::setObjectOwnership(item, QQmlEngine::CppOwnership);
             item->setParentItem(Utility::Window()->contentItem());

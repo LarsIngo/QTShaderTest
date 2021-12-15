@@ -24,6 +24,11 @@ namespace SpellScaper
     {
         Utility::Instance().app = new QGuiApplication(argc, argv);
         QQmlComponent windowComponent(SpellScaper::Utility::Engine(), QUrl("qrc:/qmls/main.qml"));
+        if (windowComponent.isError())
+        {
+            qDebug() << windowComponent.errorString();
+        }
+
         SpellScaper::Utility::Instance().window = qobject_cast<QQuickWindow*>(windowComponent.create());
 
         return Utility::App();

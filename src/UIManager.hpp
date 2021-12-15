@@ -20,32 +20,23 @@ namespace SpellScaper
 
         static UIManager& Instance();
     public:
-        static QGuiApplication* Initialize(int argc, char *argv[]);
-        static QGuiApplication* App();
         static QQmlEngine* Engine();
         static QQuickWindow* Window();
+        static QGuiApplication* Initialize(int argc, char *argv[]);
+        static QObject* InstantiateObject(const QUrl& url);
 
         template <class T>
         static T* InstantiateObject(const QUrl& url)
         {
-            QQmlComponent component(UIManager::Engine(), url);
-            if (component.isError())
-            {
-                qDebug() << component.errorString();
-                return nullptr;
-            }
-
-            QObject* object = component.create();
-            T* t = qobject_cast<T*>(object);
-            return t;
+            return qobject_cast<T*>(UIManager::InstantiateObject(url));
         }
 
         template <class T>
         static T* InstantiateItem(const QUrl& url, QQuickItem* parent = nullptr)
         {
-            T* t = UIManager::InstantiateObject<T>(url);
-            t->setParentItem(parent != nullptr ? parent : UIManager::Window()->contentItem());
-            return t;
+            T* item = UIManager::InstantiateObject<T>(url);
+            item->setParentItem(parent != nullptr ? parent : UIManager::Window()->contentItem());
+            return item;
         }
 
         UIManager(UIManager const&) = delete;

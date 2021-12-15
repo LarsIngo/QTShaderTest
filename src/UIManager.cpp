@@ -48,4 +48,16 @@ namespace SpellScaper
     {
         return UIManager::Instance().window;
     }
+
+    QObject* UIManager::InstantiateObject(const QUrl& url)
+    {
+        QQmlComponent component(UIManager::Engine(), url);
+        if (component.isError())
+        {
+            qDebug() << component.errorString();
+            return nullptr;
+        }
+
+        return component.create();
+    }
 }

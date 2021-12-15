@@ -23,18 +23,18 @@ namespace SpellScaper
         static QQmlEngine* Engine();
         static QQuickWindow* Window();
         static QGuiApplication* Initialize(int argc, char *argv[]);
-        static QObject* InstantiateObject(const QUrl& url);
+        static QObject* InstantiateObject(const QUrl& url, float lifetime = -1.0f);
 
         template <class T>
-        static T* InstantiateObject(const QUrl& url)
+        static T* InstantiateObject(const QUrl& url, float lifetime = -1.0f)
         {
-            return qobject_cast<T*>(UIManager::InstantiateObject(url));
+            return qobject_cast<T*>(UIManager::InstantiateObject(url, lifetime));
         }
 
         template <class T>
-        static T* InstantiateItem(const QUrl& url, QQuickItem* parent = nullptr)
+        static T* InstantiateItem(const QUrl& url, float lifetime = -1.0f, QQuickItem* parent = nullptr)
         {
-            T* item = UIManager::InstantiateObject<T>(url);
+            T* item = UIManager::InstantiateObject<T>(url, lifetime);
             item->setParentItem(parent != nullptr ? parent : UIManager::Window()->contentItem());
             return item;
         }

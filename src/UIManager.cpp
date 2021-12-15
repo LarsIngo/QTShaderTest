@@ -49,7 +49,7 @@ namespace SpellScaper
         return UIManager::Instance().window;
     }
 
-    QObject* UIManager::InstantiateObject(const QUrl& url)
+    QObject* UIManager::InstantiateObject(const QUrl& url, float lifetime)
     {
         QQmlComponent component(UIManager::Engine(), url);
         if (component.isError())
@@ -58,6 +58,13 @@ namespace SpellScaper
             return nullptr;
         }
 
-        return component.create();
+        QObject* object =  component.create();
+
+        if (lifetime > 0.0f)
+        {
+            QTimer::singleShot(lifetime * 1000, object, [object](){ object->deleteLater(); });
+        }
+
+        return object;
     }
 }

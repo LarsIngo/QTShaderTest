@@ -1,4 +1,4 @@
-#include "Utility.hpp"
+#include "UIManager.hpp"
 
 #include "Map.hpp"
 #include "Ping.hpp"
@@ -7,45 +7,45 @@
 
 namespace SpellScaper
 {
-    Utility::Utility()
+    UIManager::UIManager()
     {
         this->engine = new QQmlEngine();
     }
 
-    Utility::~Utility()
+    UIManager::~UIManager()
     {
         delete this->engine;
         delete this->app;
         delete this->window;
     }
 
-    Utility& Utility::Instance()
+    UIManager& UIManager::Instance()
     {
-        static Utility instance;
+        static UIManager instance;
         return instance;
     }
 
-    QGuiApplication* Utility::Initialize(int argc, char *argv[])
+    QGuiApplication* UIManager::Initialize(int argc, char *argv[])
     {
         qmlRegisterType<SpellScaper::Map>("SpellScaper", 1, 0, "Map");
         qmlRegisterType<SpellScaper::Ping>("SpellScaper", 1, 0, "Ping");
         qmlRegisterType<SpellScaper::Radar>("SpellScaper", 1, 0, "Radar");
         qmlRegisterType<SpellScaper::Window>("SpellScaper", 1, 0, "Window");
 
-        Utility::Instance().app = new QGuiApplication(argc, argv);
+        UIManager::Instance().app = new QGuiApplication(argc, argv);
 
-        SpellScaper::Utility::Instance().window = Utility::InstantiateObject<SpellScaper::Window>(QUrl("qrc:/qmls/Window.qml"));
+        SpellScaper::UIManager::Instance().window = UIManager::InstantiateObject<SpellScaper::Window>(QUrl("qrc:/qmls/Window.qml"));
 
-        return Utility::Instance().app;
+        return UIManager::Instance().app;
     }
 
-    QQmlEngine* Utility::Engine()
+    QQmlEngine* UIManager::Engine()
     {
-        return Utility::Instance().engine;
+        return UIManager::Instance().engine;
     }
 
-    QQuickWindow* Utility::Window()
+    QQuickWindow* UIManager::Window()
     {
-        return Utility::Instance().window;
+        return UIManager::Instance().window;
     }
 }

@@ -8,17 +8,17 @@
 
 namespace SpellScaper
 {
-    class Utility
+    class UIManager
     {
     private:
-        Utility();
-        ~Utility();
+        UIManager();
+        ~UIManager();
 
         QGuiApplication* app;
         QQmlEngine* engine;
         SpellScaper::Window* window;
 
-        static Utility& Instance();
+        static UIManager& Instance();
     public:
         static QGuiApplication* Initialize(int argc, char *argv[]);
         static QGuiApplication* App();
@@ -28,7 +28,7 @@ namespace SpellScaper
         template <class T>
         static T* InstantiateObject(const QUrl& url)
         {
-            QQmlComponent component(Utility::Engine(), url);
+            QQmlComponent component(UIManager::Engine(), url);
             if (component.isError())
             {
                 qDebug() << component.errorString();
@@ -43,13 +43,13 @@ namespace SpellScaper
         template <class T>
         static T* InstantiateItem(const QUrl& url, QQuickItem* parent = nullptr)
         {
-            T* t = Utility::InstantiateObject<T>(url);
-            t->setParentItem(parent != nullptr ? parent : Utility::Window()->contentItem());
+            T* t = UIManager::InstantiateObject<T>(url);
+            t->setParentItem(parent != nullptr ? parent : UIManager::Window()->contentItem());
             return t;
         }
 
-        Utility(Utility const&) = delete;
-        void operator=(Utility const&) = delete;
+        UIManager(UIManager const&) = delete;
+        void operator=(UIManager const&) = delete;
     };
 }
 

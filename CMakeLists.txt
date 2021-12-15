@@ -23,18 +23,20 @@ find_package(Qt6 COMPONENTS
 
 set(PROJECT_SOURCES
     "src/Main.cpp"
+    "src/UIManager.cpp"
+
     "src/Map.cpp"
     "src/Ping.cpp"
     "src/Radar.cpp"
-    "src/Utility.cpp"
     "src/Window.cpp"
 )
 
 set(PROJECT_HEADERS
+    "src/UIManager.hpp"
+
     "src/Map.hpp"
     "src/Ping.hpp"
     "src/Radar.hpp"
-    "src/Utility.hpp"
     "src/Window.hpp"
 )
 

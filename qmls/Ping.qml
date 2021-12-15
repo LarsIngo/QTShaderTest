@@ -1,14 +1,16 @@
 import QtQuick
 import SpellScaper as SpellScaper
 
-SpellScaper.Ping {
+SpellScaper.Ping
+{
     width: 500
     height: 500
 
     ShaderEffect
     {
         property real time
-          NumberAnimation on time {
+          NumberAnimation on time
+          {
             from: 0
             to: 1
             duration: 3000
@@ -17,7 +19,8 @@ SpellScaper.Ping {
           }
 
         property real alphaOverTime
-          NumberAnimation on alphaOverTime {
+          NumberAnimation on alphaOverTime
+          {
             from: 0
             to: 1
             duration: 3000

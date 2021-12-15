@@ -30,7 +30,7 @@ namespace SpellScaper
 
         if (event->buttons() & Qt::RightButton)
         {
-            QQuickItem* radar = SpellScaper::Utility::Instantiate<QQuickItem>(QUrl("qrc:/qmls/Radar.qml"));
+            Radar* radar = SpellScaper::Utility::Instantiate<Radar>(QUrl("qrc:/qmls/Radar.qml"));
             radar->setProperty("x", event->pos().x() - radar->property("width").toReal() * 0.5f);
             radar->setProperty("y", event->pos().y() - radar->property("height").toReal() * 0.5f);
         }

@@ -1,10 +1,13 @@
-import QtQuick 2.0
+import QtQuick
+import SpellScaper as SpellScaper
 
-Item {
+SpellScaper.Radar
+{
     width: 500
     height: 500
 
-    Image {
+    Image
+    {
         id: radarNoise
         source: "qrc:/images/radarNoise.png"
         visible: false

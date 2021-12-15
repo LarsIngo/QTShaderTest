@@ -23,7 +23,7 @@ namespace SpellScaper
     QGuiApplication* Utility::Initialize(int argc, char *argv[])
     {
         Utility::Instance().app = new QGuiApplication(argc, argv);
-        QQmlComponent windowComponent(SpellScaper::Utility::Engine(), QUrl("qrc:/qmls/main.qml"));
+        QQmlComponent windowComponent(SpellScaper::Utility::Engine(), QUrl("qrc:/qmls/Window.qml"));
         if (windowComponent.isError())
         {
             qDebug() << windowComponent.errorString();

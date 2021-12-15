@@ -1,6 +1,7 @@
 import QtQuick
+import SpellScaper as SpellScaper
 
-Window
+SpellScaper.Window
 {
     width: 1920
     height: 1080

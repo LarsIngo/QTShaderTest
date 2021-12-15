@@ -27,6 +27,7 @@ set(PROJECT_SOURCES
     "src/Ping.cpp"
     "src/Radar.cpp"
     "src/Utility.cpp"
+    "src/Window.cpp"
 )
 
 set(PROJECT_HEADERS
@@ -34,13 +35,14 @@ set(PROJECT_HEADERS
     "src/Ping.hpp"
     "src/Radar.hpp"
     "src/Utility.hpp"
+    "src/Window.hpp"
 )
 
 set(PROJECT_QMLS
-    "qmls/main.qml"
     "qmls/Map.qml"
     "qmls/Ping.qml"
     "qmls/Radar.qml"
+    "qmls/Window.qml"
 )
 
 set(PROJECT_IMAGES

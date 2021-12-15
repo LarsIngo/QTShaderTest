@@ -4,10 +4,10 @@
 #include <QQmlEngine>
 #include <QtQuick>
 
-#include "Window.hpp"
-
 namespace SpellScaper
 {
+    class Window;
+
     class UIManager
     {
     private:

@@ -22,7 +22,7 @@ find_package(Qt6 COMPONENTS
 )
 
 set(PROJECT_SOURCES
-    "src/main.cpp"
+    "src/Main.cpp"
     "src/Map.cpp"
     "src/Ping.cpp"
     "src/Radar.cpp"

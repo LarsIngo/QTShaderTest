@@ -1,4 +1,8 @@
 #include "Utility.hpp"
+
+#include "Map.hpp"
+#include "Ping.hpp"
+#include "Radar.hpp"
 #include "Window.hpp"
 
 namespace SpellScaper
@@ -23,6 +27,11 @@ namespace SpellScaper
 
     QGuiApplication* Utility::Initialize(int argc, char *argv[])
     {
+        qmlRegisterType<SpellScaper::Map>("SpellScaper", 1, 0, "Map");
+        qmlRegisterType<SpellScaper::Ping>("SpellScaper", 1, 0, "Ping");
+        qmlRegisterType<SpellScaper::Radar>("SpellScaper", 1, 0, "Radar");
+        qmlRegisterType<SpellScaper::Window>("SpellScaper", 1, 0, "Window");
+
         Utility::Instance().app = new QGuiApplication(argc, argv);
 
         SpellScaper::Utility::Instance().window = Utility::InstantiateObject<SpellScaper::Window>(QUrl("qrc:/qmls/Window.qml"));
@@ -40,4 +49,3 @@ namespace SpellScaper
         return Utility::Instance().window;
     }
 }
-

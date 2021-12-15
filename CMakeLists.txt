@@ -25,22 +25,22 @@ set(PROJECT_SOURCES
     "src/main.cpp"
     "src/Map.cpp"
     "src/Ping.cpp"
+    "src/Radar.cpp"
     "src/Utility.cpp"
 )
 
 set(PROJECT_HEADERS
     "src/Map.hpp"
     "src/Ping.hpp"
+    "src/Radar.hpp"
     "src/Utility.hpp"
 )
 
 set(PROJECT_QMLS
     "qmls/main.qml"
-    "qmls/ImageFX.qml"
-    "qmls/PingFX.qml"
-    "qmls/RadarFX.qml"
     "qmls/Map.qml"
     "qmls/Ping.qml"
+    "qmls/Radar.qml"
 )
 
 set(PROJECT_IMAGES

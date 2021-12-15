@@ -1,5 +1,4 @@
 #include "Ping.hpp"
-#include "Utility.hpp"
 
 namespace SpellScaper
 {

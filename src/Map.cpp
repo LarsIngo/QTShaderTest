@@ -21,16 +21,19 @@ namespace SpellScaper
         QQuickItem::mousePressEvent(event);
         qDebug() << event->pos();
 
-        if (event->buttons() == Qt::RightButton)
+        if (event->buttons() & Qt::LeftButton)
         {
             this->soundEffect.play();
             Ping* ping = SpellScaper::Utility::Instantiate<Ping>(QUrl("qrc:/qmls/Ping.qml"));
             ping->setProperty("x", event->pos().x() - ping->property("width").toReal() * 0.5f);
             ping->setProperty("y", event->pos().y() - ping->property("height").toReal() * 0.5f);
         }
-        else
+
+        if (event->buttons() & Qt::RightButton)
         {
-            QQuickItem* radar = SpellScaper::Utility::Instantiate<QQuickItem>(QUrl("qrc:/qmls/RadarFX.qml"));
+            QQuickItem* radar = SpellScaper::Utility::Instantiate<QQuickItem>(QUrl("qrc:/qmls/Radar.qml"));
+            radar->setProperty("x", event->pos().x() - radar->property("width").toReal() * 0.5f);
+            radar->setProperty("y", event->pos().y() - radar->property("height").toReal() * 0.5f);
         }
     }
 }

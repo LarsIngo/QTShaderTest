@@ -1,7 +1,6 @@
 import QtQuick 2.0
 
 Item {
-    anchors.centerIn: parent
     width: 500
     height: 500
 
@@ -47,8 +46,7 @@ Item {
 
         property variant noiseTex: radarNoise
 
-        width: parent.width
-        height: parent.height
+        anchors.fill: parent
         vertexShader: "qrc:/shaders/radar.vert.qsb"
         fragmentShader: "qrc:/shaders/radar.frag.qsb"
     }

@@ -25,6 +25,8 @@ namespace SpellScaper
         {
             this->soundEffect.play();
             Ping* ping = SpellScaper::Utility::Instantiate<Ping>(QUrl("qrc:/qmls/Ping.qml"));
+            ping->setProperty("x", event->pos().x() - ping->property("width").toReal() * 0.5f);
+            ping->setProperty("y", event->pos().y() - ping->property("height").toReal() * 0.5f);
         }
         else
         {

@@ -2,7 +2,8 @@ import QtQuick
 import SpellScaper as SpellScaper
 
 SpellScaper.Ping {
-    anchors.fill: parent
+    width: 500
+    height: 500
 
     ShaderEffect
     {
@@ -26,9 +27,7 @@ SpellScaper.Ping {
 
         property real threshold: 0.01
 
-        anchors.centerIn: parent
-        width: 500
-        height: 500
+        anchors.fill: parent
         vertexShader: "qrc:/shaders/ping.vert.qsb"
         fragmentShader: "qrc:/shaders/ping.frag.qsb"
     }

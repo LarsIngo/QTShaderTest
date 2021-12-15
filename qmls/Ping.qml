@@ -14,7 +14,7 @@ SpellScaper.Ping
             from: 0
             to: 1
             duration: 3000
-            loops: Animation.Infinite
+            //loops: Animation.Infinite
             easing: easing.type.OutExpo
           }
 
@@ -24,7 +24,7 @@ SpellScaper.Ping
             from: 0
             to: 1
             duration: 3000
-            loops: Animation.Infinite
+            //loops: Animation.Infinite
             easing: easing.type.InExpo
           }
 

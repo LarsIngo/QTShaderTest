@@ -1,4 +1,5 @@
 #include "Utility.hpp"
+#include "Window.hpp"
 
 namespace SpellScaper
 {
@@ -23,19 +24,9 @@ namespace SpellScaper
     QGuiApplication* Utility::Initialize(int argc, char *argv[])
     {
         Utility::Instance().app = new QGuiApplication(argc, argv);
-        QQmlComponent windowComponent(SpellScaper::Utility::Engine(), QUrl("qrc:/qmls/Window.qml"));
-        if (windowComponent.isError())
-        {
-            qDebug() << windowComponent.errorString();
-        }
 
-        SpellScaper::Utility::Instance().window = qobject_cast<QQuickWindow*>(windowComponent.create());
+        SpellScaper::Utility::Instance().window = Utility::InstantiateObject<SpellScaper::Window>(QUrl("qrc:/qmls/Window.qml"));
 
-        return Utility::App();
-    }
-
-    QGuiApplication* Utility::App()
-    {
         return Utility::Instance().app;
     }
 

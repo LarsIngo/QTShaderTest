@@ -4,6 +4,8 @@
 #include <QQmlEngine>
 #include <QtQuick>
 
+#include "Window.hpp"
+
 namespace SpellScaper
 {
     class Utility
@@ -14,7 +16,7 @@ namespace SpellScaper
 
         QGuiApplication* app;
         QQmlEngine* engine;
-        QQuickWindow* window;
+        SpellScaper::Window* window;
 
         static Utility& Instance();
     public:
@@ -23,26 +25,31 @@ namespace SpellScaper
         static QQmlEngine* Engine();
         static QQuickWindow* Window();
 
-        Utility(Utility const&) = delete;
-        void operator=(Utility const&) = delete;
-
         template <class T>
-        static T* Instantiate (const QUrl& url)
+        static T* InstantiateObject(const QUrl& url)
         {
-            QQmlComponent comp(Utility::Engine(), url);
-            if (comp.isError())
+            QQmlComponent component(Utility::Engine(), url);
+            if (component.isError())
             {
-                qDebug() << comp.errorString();
+                qDebug() << component.errorString();
                 return nullptr;
             }
 
-            T* item = qobject_cast<T*>(comp.create());
-            QQmlEngine::setObjectOwnership(item, QQmlEngine::CppOwnership);
-            item->setParentItem(Utility::Window()->contentItem());
-            item->setParent(Utility::Engine());
-
-            return item;
+            QObject* object = component.create();
+            T* t = qobject_cast<T*>(object);
+            return t;
         }
+
+        template <class T>
+        static T* InstantiateItem(const QUrl& url, QQuickItem* parent = nullptr)
+        {
+            T* t = Utility::InstantiateObject<T>(url);
+            t->setParentItem(parent != nullptr ? parent : Utility::Window()->contentItem());
+            return t;
+        }
+
+        Utility(Utility const&) = delete;
+        void operator=(Utility const&) = delete;
     };
 }
 

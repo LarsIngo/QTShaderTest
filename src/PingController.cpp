@@ -10,5 +10,9 @@ namespace SpellScaper
     PingController::~PingController()
     {
     }
+
+    void PingController::Init()
+    {
+    }
 }
 

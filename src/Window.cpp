@@ -9,5 +9,9 @@ namespace SpellScaper
     Window::~Window()
     {
     }
+
+    void Window::Init()
+    {
+    }
 }
 

@@ -11,6 +11,7 @@ namespace SpellScaper
     public:
         PingController();
         virtual ~PingController();
+        void Init();
     };
 }
 

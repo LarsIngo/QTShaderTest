@@ -10,5 +10,9 @@ namespace SpellScaper
     Line::~Line()
     {
     }
+
+    void Line::Init()
+    {
+    }
 }
 

@@ -11,6 +11,7 @@ namespace SpellScaper
     public:
         Window();
         virtual ~Window();
+        void Init();
     };
 }
 

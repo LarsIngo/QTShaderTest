@@ -11,6 +11,7 @@ namespace SpellScaper
     public:
         Radar();
         virtual ~Radar();
+        void Init(QPoint pos);
     };
 }
 

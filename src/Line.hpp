@@ -11,6 +11,7 @@ namespace SpellScaper
     public:
         Line();
         virtual ~Line();
+        void Init();
     };
 }
 

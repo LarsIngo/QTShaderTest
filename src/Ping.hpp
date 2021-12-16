@@ -13,6 +13,7 @@ namespace SpellScaper
     public:
         Ping();
         virtual ~Ping();
+        void Init(QPoint pos);
     };
 }
 

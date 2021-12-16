@@ -11,6 +11,7 @@ namespace SpellScaper
     public:
         Map();
         virtual ~Map();
+        void Init();
 
         void mousePressEvent(QMouseEvent* event) override;
     };

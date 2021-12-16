@@ -1,18 +1,22 @@
 #version 440
 layout(location = 0) in vec2 coord;
 layout(location = 0) out vec4 fragColor;
-layout(std140, binding = 0) uniform buf {
+layout(std140, binding = 0) uniform buf
+{
     mat4 qt_Matrix;
     float qt_Opacity;
 	
 	vec2 rootPos;
 	vec2 targetPos;
+	
+	vec2 target;
 };
 
 layout(binding = 1) uniform sampler2D colorTex;
 layout(binding = 2) uniform sampler2D maskTex;
 
-void main() {
+void main()
+{
 	float PI = radians(180);
 	float cutValue = sin(PI * 0.25f);
 
@@ -28,6 +32,7 @@ void main() {
 	float xyLeft = dot(xyDir, vec2(-1,0)) > cutValue ? 1 : 0;
 	
 	vec2 targetVec = targetPos - rootPos;
+	targetVec = target;
 	vec2 targetDir = normalize(targetVec);
 	float targetCenter = length(targetVec) < 0.1 ? 1 : 0;
 	float targetUp = dot(targetDir, vec2(0,1)) > cutValue ? 1 : 0;

@@ -65,6 +65,15 @@ namespace SpellScaper
     {
         if (this->pingController != nullptr)
         {
+            float x = this->pingController->property("x").toReal();
+            float y = this->pingController->property("y").toReal();
+            float width = this->pingController->property("width").toReal();
+            float height = this->pingController->property("height").toReal();
+            QPoint rootPos = QPoint(x + width * 0.5f, y + height * 0.5f);
+            QPoint targetPos = event->pos();
+            QPoint targetVec = targetPos - rootPos;
+            this->pingController->setProperty("target", targetVec);
+
             this->pingController->setProperty("targetPos", event->pos());
         }
     }

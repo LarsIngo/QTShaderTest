@@ -4,7 +4,7 @@
 
 namespace SpellScaper
 {
-    class Line : public QQuickItem // TODO: Shape
+    class Line : public QQuickItem // TODO: Shape or QQuickPaintedItem
     {
         Q_OBJECT
     private:

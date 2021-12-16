@@ -8,6 +8,6 @@ SpellScaper.PingController
 
     Image {
         anchors.fill: parent
-        source: "qrc:/images/Map.png"
+        source: "qrc:/images/PingControllerColor.png"
     }
 }

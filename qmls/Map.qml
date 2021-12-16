@@ -11,9 +11,4 @@ SpellScaper.Map
         anchors.fill: parent
         source: "qrc:/images/map.png"
     }
-
-    Line
-    {
-        anchors.fill: parent
-    }
 }

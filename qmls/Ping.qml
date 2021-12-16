@@ -14,18 +14,6 @@ SpellScaper.Ping
             from: 0
             to: 1
             duration: 3000
-            //loops: Animation.Infinite
-            easing: easing.type.OutExpo
-          }
-
-        property real alphaOverTime
-          NumberAnimation on alphaOverTime
-          {
-            from: 0
-            to: 1
-            duration: 3000
-            //loops: Animation.Infinite
-            easing: easing.type.InExpo
           }
 
         property real threshold: 0.01

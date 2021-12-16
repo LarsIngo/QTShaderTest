@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QtQuick>
+#include <QtMultimedia>
 
 namespace SpellScaper
 {
@@ -8,6 +9,7 @@ namespace SpellScaper
     {
         Q_OBJECT
     private:
+        QSoundEffect soundEffect;
     public:
         Ping();
         virtual ~Ping();

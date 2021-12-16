@@ -8,9 +8,6 @@ namespace SpellScaper
     Map::Map() : QQuickItem()
     {
         this->setAcceptedMouseButtons(Qt::AllButtons);
-
-        this->soundEffect.setSource(QUrl("qrc:/sounds/ping02.wav"));
-        this->soundEffect.setVolume(0.25f);
     }
 
     Map::~Map()
@@ -25,7 +22,6 @@ namespace SpellScaper
             Ping* ping = SpellScaper::UIManager::InstantiateItem<Ping>(QUrl("qrc:/qmls/Ping.qml"), 3.0f);
             ping->setProperty("x", event->pos().x() - ping->property("width").toReal() * 0.5f);
             ping->setProperty("y", event->pos().y() - ping->property("height").toReal() * 0.5f);
-            this->soundEffect.play();
         }
 
         if (event->buttons() & Qt::RightButton)

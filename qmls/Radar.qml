@@ -22,7 +22,6 @@ SpellScaper.Radar
             to: 1
             duration: 3000
             loops: Animation.Infinite
-            easing: easing.type.OutExpo
         }
 
         property real strength: 10
@@ -35,7 +34,6 @@ SpellScaper.Radar
                 from: 0
                 to: 10
                 duration: 6000
-                easing: easing.Linear
             }
 
             NumberAnimation
@@ -43,7 +41,6 @@ SpellScaper.Radar
                 from: 10
                 to: 0
                 duration: 1300
-                easing: easing.Linear
             }
         }
 

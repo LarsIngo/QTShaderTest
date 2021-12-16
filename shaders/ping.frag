@@ -6,7 +6,6 @@ layout(std140, binding = 0) uniform buf {
     float qt_Opacity;
 	
 	float time;
-	float alphaOverTime;
 	float threshold;
 };
 
@@ -20,7 +19,7 @@ void main() {
 	float centerMask = r < threshold * 2 ? 1 : 0;
 	float radiusMask = abs(time - r - threshold) < threshold ? 1 : 0;
 	float alphaMask = centerMask + radiusMask;
-	float alpha = alphaMask * (1 - alphaOverTime);
+	float alpha = alphaMask * (1 - time);
 
 	fragColor = mix(vec4(0), vec4(0.7, 0.2, 0.2, 1.0), alpha);
 }

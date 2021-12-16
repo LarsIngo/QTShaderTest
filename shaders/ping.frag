@@ -7,6 +7,9 @@ layout(std140, binding = 0) uniform buf {
 	
 	float time;
 	float threshold;
+	float r;
+	float g;
+	float b;
 };
 
 //layout(binding = 1) uniform sampler2D src;
@@ -14,12 +17,12 @@ layout(std140, binding = 0) uniform buf {
 void main() {
     //vec4 tex = texture(src, coord);
 	vec2 xy = coord * 2 - 1;
-	float r = length(xy);
+	float rLen = length(xy);
 	
-	float centerMask = r < threshold * 2 ? 1 : 0;
-	float radiusMask = abs(time - r - threshold) < threshold ? 1 : 0;
+	float centerMask = rLen < threshold * 2 ? 1 : 0;
+	float radiusMask = abs(time - rLen - threshold) < threshold ? 1 : 0;
 	float alphaMask = centerMask + radiusMask;
 	float alpha = alphaMask * (1 - time);
 
-	fragColor = mix(vec4(0), vec4(0.7, 0.2, 0.2, 1.0), alpha);
+	fragColor = mix(vec4(0), vec4(r, g, b, 1.0), alpha);
 }

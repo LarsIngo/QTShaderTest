@@ -3,8 +3,13 @@ import SpellScaper as SpellScaper
 
 SpellScaper.Ping
 {
+    id: root
     width: 500
     height: 500
+
+    property real r: 0.7
+    property real g: 0.2
+    property real b: 0.2
 
     ShaderEffect
     {
@@ -17,6 +22,9 @@ SpellScaper.Ping
           }
 
         property real threshold: 0.01
+        property real r: root.r
+        property real g: root.g
+        property real b: root.b
 
         anchors.fill: parent
         vertexShader: "qrc:/shaders/Ping.vert.qsb"

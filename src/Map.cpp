@@ -55,7 +55,7 @@ namespace SpellScaper
             float y = this->pingController->property("y").toReal();
             float width = this->pingController->property("width").toReal();
             float height = this->pingController->property("height").toReal();
-            ping->Init(QPoint(x + width * 0.5f, y + height * 0.5f));
+            ping->Init(QPoint(x + width * 0.5f, y + height * 0.5f), QColor(0,0,1));
 
             this->Clear();
         }

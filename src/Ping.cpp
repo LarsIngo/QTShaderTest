@@ -13,10 +13,14 @@ namespace SpellScaper
     {
     }
 
-    void Ping::Init(QPoint pos)
+    void Ping::Init(QPoint pos, QColor color)
     {
         this->setProperty("x", pos.x() - this->property("width").toReal() * 0.5f);
         this->setProperty("y", pos.y() - this->property("height").toReal() * 0.5f);
+
+        this->setProperty("r", color.red());
+        this->setProperty("g", color.green());
+        this->setProperty("b", color.blue());
     }
 }
 

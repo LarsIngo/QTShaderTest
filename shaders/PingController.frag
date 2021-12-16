@@ -36,10 +36,8 @@ void main() {
 	float targetLeft = dot(targetDir, vec2(-1,0)) > cutValue ? 1 : 0;
 	
 	float clip = xyCenter * targetCenter + xyUp * targetUp + xyDown * targetDown + xyRight * targetRight + xyLeft * targetLeft;
-	float mask = 1 + (maskSamp * clip);
-
-	vec3 finalColor = colorSamp.xyz * mask;
-	float finalAlpha = colorSamp.a * 0.6 * mask;
+	vec3 finalColor = mix(colorSamp.xyz, colorSamp.xyz * 1.5, clip * maskSamp);
+	float finalAlpha = mix(0.75, 0.50, clip * maskSamp) * colorSamp.a;
 	
-	fragColor = vec4(finalColor.xyz, clamp(finalAlpha, 0, 1));
+	fragColor = vec4(finalColor, finalAlpha);
 }

@@ -1,5 +1,6 @@
 #include "UIManager.hpp"
 
+#include "Line.hpp"
 #include "Map.hpp"
 #include "Ping.hpp"
 #include "Radar.hpp"
@@ -9,6 +10,11 @@ namespace SpellScaper
 {
     UIManager::UIManager()
     {
+        // Antialiasing.
+        QSurfaceFormat format;
+        format.setSamples(4);
+        QSurfaceFormat::setDefaultFormat(format);
+
         this->engine = new QQmlEngine();
     }
 
@@ -27,6 +33,8 @@ namespace SpellScaper
 
     QGuiApplication* UIManager::Initialize(int argc, char *argv[])
     {
+        // https://wiki.qt.io/Introduction_to_Qt_Quick_for_C++_Developers
+        qmlRegisterType<SpellScaper::Line>("SpellScaper", 1, 0, "Line");
         qmlRegisterType<SpellScaper::Map>("SpellScaper", 1, 0, "Map");
         qmlRegisterType<SpellScaper::Ping>("SpellScaper", 1, 0, "Ping");
         qmlRegisterType<SpellScaper::Radar>("SpellScaper", 1, 0, "Radar");

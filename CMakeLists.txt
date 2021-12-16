@@ -25,6 +25,7 @@ set(PROJECT_SOURCES
     "src/Main.cpp"
     "src/UIManager.cpp"
 
+    "src/Line.cpp"
     "src/Map.cpp"
     "src/Ping.cpp"
     "src/Radar.cpp"
@@ -34,6 +35,7 @@ set(PROJECT_SOURCES
 set(PROJECT_HEADERS
     "src/UIManager.hpp"
 
+    "src/Line.hpp"
     "src/Map.hpp"
     "src/Ping.hpp"
     "src/Radar.hpp"
@@ -41,6 +43,7 @@ set(PROJECT_HEADERS
 )
 
 set(PROJECT_QMLS
+    "qmls/Line.qml"
     "qmls/Map.qml"
     "qmls/Ping.qml"
     "qmls/Radar.qml"

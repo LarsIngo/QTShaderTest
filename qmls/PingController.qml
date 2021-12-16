@@ -3,8 +3,10 @@ import SpellScaper as SpellScaper
 
 SpellScaper.PingController
 {
+    id: root
     width: 256
     height: 256
+    property point targetPos
 
     Image
     {
@@ -24,6 +26,9 @@ SpellScaper.PingController
     {
         property variant colorTex: colorTex
         property variant maskTex: maskTex
+        //property color color: Qt.color(0,1,0)
+        property point rootPos: Qt.point(root.x + root.width * 0.5, root.y + root.height * 0.5)
+        property point targetPos: root.targetPos
 
         anchors.fill: parent
         vertexShader: "qrc:/shaders/PingController.vert.qsb"

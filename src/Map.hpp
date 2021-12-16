@@ -11,6 +11,7 @@ namespace SpellScaper
         Q_OBJECT
     private:
         PingController* pingController;
+        void Clear();
     public:
         Map();
         virtual ~Map();
@@ -18,6 +19,7 @@ namespace SpellScaper
 
         void mousePressEvent(QMouseEvent* event) override;
         void mouseReleaseEvent(QMouseEvent* event) override;
+        void mouseMoveEvent(QMouseEvent* event) override;
     };
 }
 

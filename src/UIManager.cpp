@@ -3,6 +3,7 @@
 #include "Line.hpp"
 #include "Map.hpp"
 #include "Ping.hpp"
+#include "PingController.hpp"
 #include "Radar.hpp"
 #include "Window.hpp"
 
@@ -37,6 +38,7 @@ namespace SpellScaper
         qmlRegisterType<SpellScaper::Line>("SpellScaper", 1, 0, "Line");
         qmlRegisterType<SpellScaper::Map>("SpellScaper", 1, 0, "Map");
         qmlRegisterType<SpellScaper::Ping>("SpellScaper", 1, 0, "Ping");
+        qmlRegisterType<SpellScaper::PingController>("SpellScaper", 1, 0, "PingController");
         qmlRegisterType<SpellScaper::Radar>("SpellScaper", 1, 0, "Radar");
         qmlRegisterType<SpellScaper::Window>("SpellScaper", 1, 0, "Window");
 
@@ -66,7 +68,7 @@ namespace SpellScaper
             return nullptr;
         }
 
-        QObject* object =  component.create();
+        QObject* object = component.create();
 
         if (lifetime > 0.0f)
         {

@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Shapes
 import SpellScaper as SpellScaper
 
 SpellScaper.Map
@@ -9,6 +8,6 @@ SpellScaper.Map
     Image
     {
         anchors.fill: parent
-        source: "qrc:/images/map.png"
+        source: "qrc:/images/Map.png"
     }
 }

@@ -9,7 +9,7 @@ SpellScaper.Radar
     Image
     {
         id: radarNoise
-        source: "qrc:/images/radarNoise.png"
+        source: "qrc:/images/RadarNoise.png"
         visible: false
     }
     ShaderEffect
@@ -47,8 +47,8 @@ SpellScaper.Radar
         property variant noiseTex: radarNoise
 
         anchors.fill: parent
-        vertexShader: "qrc:/shaders/radar.vert.qsb"
-        fragmentShader: "qrc:/shaders/radar.frag.qsb"
+        vertexShader: "qrc:/shaders/Radar.vert.qsb"
+        fragmentShader: "qrc:/shaders/Radar.frag.qsb"
     }
 }
 

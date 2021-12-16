@@ -12,7 +12,7 @@ namespace SpellScaper
         Map();
         virtual ~Map();
 
-        void mousePressEvent(QMouseEvent *event) override;
+        void mousePressEvent(QMouseEvent* event) override;
     };
 }
 

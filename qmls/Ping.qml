@@ -19,7 +19,7 @@ SpellScaper.Ping
         property real threshold: 0.01
 
         anchors.fill: parent
-        vertexShader: "qrc:/shaders/ping.vert.qsb"
-        fragmentShader: "qrc:/shaders/ping.frag.qsb"
+        vertexShader: "qrc:/shaders/Ping.vert.qsb"
+        fragmentShader: "qrc:/shaders/Ping.frag.qsb"
     }
 }

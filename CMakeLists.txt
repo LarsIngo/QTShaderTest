@@ -28,6 +28,7 @@ set(PROJECT_SOURCES
     "src/Line.cpp"
     "src/Map.cpp"
     "src/Ping.cpp"
+    "src/PingController.cpp"
     "src/Radar.cpp"
     "src/Window.cpp"
 )
@@ -38,6 +39,7 @@ set(PROJECT_HEADERS
     "src/Line.hpp"
     "src/Map.hpp"
     "src/Ping.hpp"
+    "src/PingController.hpp"
     "src/Radar.hpp"
     "src/Window.hpp"
 )
@@ -46,27 +48,30 @@ set(PROJECT_QMLS
     "qmls/Line.qml"
     "qmls/Map.qml"
     "qmls/Ping.qml"
+    "qmls/PingController.qml"
     "qmls/Radar.qml"
     "qmls/Window.qml"
 )
 
 set(PROJECT_IMAGES
-    "images/spellscaper.png"
-    "images/triangle.png"
-    "images/map.png"
-    "images/radarNoise.png"
+    "images/Map.png"
+    "images/RadarNoise.png"
+    "images/PingControllerColor.png"
+    "images/PingControllerMask.png"
 )
 
 set(PROJECT_SOUNDS
-    "sounds/ping01.wav"
-    "sounds/ping02.wav"
+    "sounds/Ping01.wav"
+    "sounds/Ping02.wav"
 )
 
 set(PROJECT_SHADERS
-    "shaders/ping.frag"
-    "shaders/ping.vert"
-    "shaders/radar.frag"
-    "shaders/radar.vert"
+    "shaders/Ping.frag"
+    "shaders/Ping.vert"
+    "shaders/PingController.frag"
+    "shaders/PingController.vert"
+    "shaders/Radar.frag"
+    "shaders/Radar.vert"
 )
 
 qt_add_executable(${PROJECT_NAME}

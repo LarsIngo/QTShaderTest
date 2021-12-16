@@ -14,7 +14,6 @@ SpellScaper.Radar
     }
     ShaderEffect
     {
-        id: fx
         property real time
         NumberAnimation on time
         {

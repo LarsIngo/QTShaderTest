@@ -4,22 +4,16 @@ layout(location = 0) out vec4 fragColor;
 layout(std140, binding = 0) uniform buf {
     mat4 qt_Matrix;
     float qt_Opacity;
-	
-	float time;
-	float threshold;
 };
 
-//layout(binding = 1) uniform sampler2D src;
+layout(binding = 1) uniform sampler2D colorTex;
+layout(binding = 2) uniform sampler2D maskTex;
 
 void main() {
-    //vec4 tex = texture(src, coord);
-	vec2 xy = coord * 2 - 1;
-	float r = length(xy);
+    vec4 color = texture(colorTex, coord);
+	float mask = 1 - texture(maskTex, coord).r;
 	
-	float centerMask = r < threshold * 2 ? 1 : 0;
-	float radiusMask = abs(time - r - threshold) < threshold ? 1 : 0;
-	float alphaMask = centerMask + radiusMask;
-	float alpha = alphaMask * (1 - time);
+	vec3 finalColor = color.rbg * (1 + mask);
 
-	fragColor = mix(vec4(0), vec4(0.7, 0.2, 0.2, 1.0), alpha);
+	fragColor = vec4(finalColor.rbg, color.a);
 }

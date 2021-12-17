@@ -44,7 +44,8 @@ SpellScaper.Ping
 
         width: root.width / 8.0;
         height: root.height / 8.0;
-        anchors.centerIn: parent
+        x: root.width * 0.5 - this.width * 0.5
+        y: root.height * 0.5 - this.height * 1.0
         source: root.icon
     }
 }

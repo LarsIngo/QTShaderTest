@@ -36,7 +36,7 @@ void main()
 
 	float clip = mix((xyUp * targetUp + xyDown * targetDown + xyLeft * targetLeft + xyRight * targetRight) * (1 - xyCenter), xyCenter, xyCenter * targetCenter);
 	vec3 finalColor = mix(colorSamp.xyz, colorSamp.xyz * 1.5, clip * maskSamp);
-	float finalAlpha = mix(0.75, 0.50, clip * maskSamp) * colorSamp.a;
+	float finalAlpha = mix(0.5, 0.4, clip * maskSamp) * colorSamp.a;
 	
 	fragColor = vec4(finalColor, finalAlpha);
 }

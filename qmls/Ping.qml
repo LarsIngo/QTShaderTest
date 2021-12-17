@@ -4,12 +4,14 @@ import SpellScaper as SpellScaper
 SpellScaper.Ping
 {
     id: root
-    width: 500
-    height: 500
+    width: 512
+    height: 512
 
-    property real r: 0.7
-    property real g: 0.2
-    property real b: 0.2
+    property real r: 1
+    property real g: 1
+    property real b: 1
+
+    property variant icon
 
     ShaderEffect
     {
@@ -29,5 +31,20 @@ SpellScaper.Ping
         anchors.fill: parent
         vertexShader: "qrc:/shaders/Ping.vert.qsb"
         fragmentShader: "qrc:/shaders/Ping.frag.qsb"
+    }
+
+    Image
+    {
+        NumberAnimation on opacity
+        {
+            from: 1
+            to: 0
+            duration: 3000
+        }
+
+        width: root.width / 8.0;
+        height: root.height / 8.0;
+        anchors.centerIn: parent
+        source: root.icon
     }
 }

@@ -13,7 +13,7 @@ namespace SpellScaper
     public:
         Ping();
         virtual ~Ping();
-        void Init(QPoint pos, QColor color);
+        void Init(const QPoint& pos, const QColor& color, const QUrl& icon);
     };
 }
 

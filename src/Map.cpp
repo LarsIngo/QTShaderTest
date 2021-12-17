@@ -100,26 +100,31 @@ namespace SpellScaper
                 QVector2D rootCenter = QVector2D(this->pingController->property("x").toReal() + rootSize.x() * 0.5f, this->pingController->property("y").toReal() + rootSize.y() * 0.5f);
 
                 QColor color;
+                QUrl icon;
                 switch(pingType) {
                     case PingType::up:
-                        color = QColor(1,0,0);
+                        color = QColor(213, 32, 18);
+                        icon =  QUrl("qrc:/images/PingIconUp.png");
                         break;
                     case PingType::down:
-                        color = QColor(0,0,1);
+                        color = QColor(8, 143, 180);
+                        icon =  QUrl("qrc:/images/PingIconDown.png");
                         break;
                     case PingType::left:
-                        color = QColor(1,1,0);
+                        color = QColor(206, 172, 90);
+                        icon =  QUrl("qrc:/images/PingIconLeft.png");
                         break;
                     case PingType::right:
-                        color = QColor(1,0,1);
+                        color = QColor(43, 148, 129);
+                        icon =  QUrl("qrc:/images/PingIconRight.png");
                         break;
                     default:
-                        color = QColor(1,1,1,0);
+                        color = QColor(255, 255, 255,0);
+                        icon =  QUrl();
                 }
 
-                qDebug() << pingType;
                 Ping* ping = SpellScaper::UIManager::InstantiateItem<Ping>(QUrl("qrc:/qmls/Ping.qml"), 3.0f);
-                ping->Init(QPoint(rootCenter.x(), rootCenter.y()), color);
+                ping->Init(QPoint(rootCenter.x(), rootCenter.y()), color, icon);
             }
 
             this->Clear();

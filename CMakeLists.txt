@@ -58,6 +58,10 @@ set(PROJECT_IMAGES
     "images/RadarNoise.png"
     "images/PingControllerColor.png"
     "images/PingControllerMask.png"
+    "images/PingIconUp.png"
+    "images/PingIconDown.png"
+    "images/PingIconLeft.png"
+    "images/PingIconRight.png"
 )
 
 set(PROJECT_SOUNDS

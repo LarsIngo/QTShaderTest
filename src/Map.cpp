@@ -6,16 +6,6 @@
 
 namespace SpellScaper
 {
-    enum PingType
-    {
-        none = -1,
-        center,
-        up,
-        down,
-        left,
-        right,
-    };
-
     Map::Map() : QQuickItem()
     {
         this->pingController = nullptr;
@@ -40,6 +30,48 @@ namespace SpellScaper
         }
     }
 
+     Map::PingType Map::EvaluatePing(const QVector2D& target)
+     {
+         if (this->pingController != nullptr)
+         {
+             QVector2D rootSize = QVector2D( this->pingController->property("width").toReal(), this->pingController->property("height").toReal());
+             QVector2D rootCenter = QVector2D(this->pingController->property("x").toReal() + rootSize.x() * 0.5f, this->pingController->property("y").toReal() + rootSize.y() * 0.5f);
+
+             QVector2D targetVec = (target - rootCenter);
+             QVector2D targetDir = targetVec.normalized();
+
+             float pi = qDegreesToRadians(180);
+             float val = sin(pi * 0.25f);
+
+             if (targetVec.length() < rootSize.x() * 0.1f)
+             {
+                return PingType::center;
+             }
+             else if (QVector2D::dotProduct(targetDir, QVector2D(0,-1)) > val)
+             {
+                return PingType::up;
+             }
+             else if (QVector2D::dotProduct(targetDir, QVector2D(0, 1)) > val)
+             {
+                return PingType::down;
+             }
+             else if (QVector2D::dotProduct(targetDir, QVector2D(-1, 0)) > val)
+             {
+                return PingType::left;
+             }
+             else if (QVector2D::dotProduct(targetDir, QVector2D(1, 0)) > val)
+             {
+                return PingType::right;
+             }
+             else
+             {
+                return PingType::none;
+             }
+         }
+
+         return PingType::none;
+    }
+
     void Map::mousePressEvent(QMouseEvent* event)
     {
         if ((event->buttons() & Qt::LeftButton) && this->pingController == nullptr)
@@ -60,11 +92,35 @@ namespace SpellScaper
     {
         if (this->pingController != nullptr)
         {
-            QVector2D rootSize = QVector2D( this->pingController->property("width").toReal(), this->pingController->property("height").toReal());
-            QVector2D rootCenter = QVector2D(this->pingController->property("x").toReal() + rootSize.x() * 0.5f, this->pingController->property("y").toReal() + rootSize.y() * 0.5f);
+            QPoint point = event->pos();
+            PingType pingType = this->EvaluatePing(QVector2D(point.x(), point.y()));
+            if (pingType != PingType::none && pingType != PingType::center)
+            {
+                QVector2D rootSize = QVector2D( this->pingController->property("width").toReal(), this->pingController->property("height").toReal());
+                QVector2D rootCenter = QVector2D(this->pingController->property("x").toReal() + rootSize.x() * 0.5f, this->pingController->property("y").toReal() + rootSize.y() * 0.5f);
 
-            Ping* ping = SpellScaper::UIManager::InstantiateItem<Ping>(QUrl("qrc:/qmls/Ping.qml"), 3.0f);
-            ping->Init(QPoint(rootCenter.x(), rootCenter.y()), QColor(0,0,1));
+                QColor color;
+                switch(pingType) {
+                    case PingType::up:
+                        color = QColor(1,0,0);
+                        break;
+                    case PingType::down:
+                        color = QColor(0,0,1);
+                        break;
+                    case PingType::left:
+                        color = QColor(1,1,0);
+                        break;
+                    case PingType::right:
+                        color = QColor(1,0,1);
+                        break;
+                    default:
+                        color = QColor(1,1,1,0);
+                }
+
+                qDebug() << pingType;
+                Ping* ping = SpellScaper::UIManager::InstantiateItem<Ping>(QUrl("qrc:/qmls/Ping.qml"), 3.0f);
+                ping->Init(QPoint(rootCenter.x(), rootCenter.y()), color);
+            }
 
             this->Clear();
         }
@@ -74,42 +130,8 @@ namespace SpellScaper
     {
         if (this->pingController != nullptr)
         {
-            QVector2D rootSize = QVector2D( this->pingController->property("width").toReal(), this->pingController->property("height").toReal());
-            QVector2D rootCenter = QVector2D(this->pingController->property("x").toReal() + rootSize.x() * 0.5f, this->pingController->property("y").toReal() + rootSize.y() * 0.5f);
-
-            QVector2D targetCenter = QVector2D(event->pos());
-            QVector2D targetVec = (targetCenter - rootCenter);
-            QVector2D targetDir = targetVec.normalized();
-
-            float pi = qDegreesToRadians(180);
-            float val = sin(pi * 0.25f);
-
-            PingType pingType;
-            if (targetVec.length() < rootSize.x() * 0.1f)
-            {
-                pingType = PingType::center;
-            }
-            else if (QVector2D::dotProduct(targetDir, QVector2D(0,-1)) > val)
-            {
-                 pingType = PingType::up;
-            }
-            else if (QVector2D::dotProduct(targetDir, QVector2D(0, 1)) > val)
-            {
-                 pingType = PingType::down;
-            }
-            else if (QVector2D::dotProduct(targetDir, QVector2D(-1, 0)) > val)
-            {
-                 pingType = PingType::left;
-            }
-            else if (QVector2D::dotProduct(targetDir, QVector2D(1, 0)) > val)
-            {
-                 pingType = PingType::right;
-            }
-            else
-            {
-                pingType = PingType::none;
-            }
-
+            QPoint point = event->pos();
+            PingType pingType = this->EvaluatePing(QVector2D(point.x(), point.y()));
             this->pingController->setProperty("pingType", int(pingType));
         }
     }

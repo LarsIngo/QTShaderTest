@@ -10,8 +10,19 @@ namespace SpellScaper
     {
         Q_OBJECT
     private:
+        enum PingType
+        {
+            none = -1,
+            center,
+            up,
+            down,
+            left,
+            right,
+        };
+
         PingController* pingController;
         void Clear();
+        PingType EvaluatePing(const QVector2D& target);
     public:
         Map();
         virtual ~Map();

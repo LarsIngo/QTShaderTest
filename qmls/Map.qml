@@ -7,6 +7,7 @@ SpellScaper.Map
 
     Image
     {
+        // Fill parent with image of a map.
         anchors.fill: parent
         source: "qrc:/images/Map.png"
     }

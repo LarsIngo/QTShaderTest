@@ -6,8 +6,11 @@ SpellScaper.PingController
     id: root
     width: 256
     height: 256
+
+    // Type of ping.
     property int pingType
 
+    // The ping controller image.
     Image
     {
         id: colorTex
@@ -15,6 +18,7 @@ SpellScaper.PingController
         source: "qrc:/images/PingControllerColor.png"
     }
 
+    // The mask of the ping controller (used to highlight specific areas of the colorTex).
     Image
     {
         id: maskTex
@@ -22,6 +26,7 @@ SpellScaper.PingController
         source: "qrc:/images/PingControllerMask.png"
     }
 
+    // The shader highlighting specific areas based on ping type.
     ShaderEffect
     {
         property variant colorTex: colorTex

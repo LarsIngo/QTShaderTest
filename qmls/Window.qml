@@ -6,7 +6,7 @@ SpellScaper.Window
     width: 1920
     height: 1080
     visible: true
-    title: "SpellScaper Demo"
+    title: "SpellScaper UI Project Demo"
 
     Map
     {

@@ -1,6 +1,5 @@
 #include "UIManager.hpp"
 
-#include "Line.hpp"
 #include "Map.hpp"
 #include "Ping.hpp"
 #include "PingController.hpp"
@@ -34,16 +33,17 @@ namespace SpellScaper
 
     QGuiApplication* UIManager::Initialize(int argc, char *argv[])
     {
-        // https://wiki.qt.io/Introduction_to_Qt_Quick_for_C++_Developers
-        qmlRegisterType<SpellScaper::Line>("SpellScaper", 1, 0, "Line");
+        // Bind C++ class to QML type.
         qmlRegisterType<SpellScaper::Map>("SpellScaper", 1, 0, "Map");
         qmlRegisterType<SpellScaper::Ping>("SpellScaper", 1, 0, "Ping");
         qmlRegisterType<SpellScaper::PingController>("SpellScaper", 1, 0, "PingController");
         qmlRegisterType<SpellScaper::Radar>("SpellScaper", 1, 0, "Radar");
         qmlRegisterType<SpellScaper::Window>("SpellScaper", 1, 0, "Window");
 
+        // Initialize app.
         UIManager::Instance().app = new QGuiApplication(argc, argv);
 
+        // Create window.
         SpellScaper::UIManager::Instance().window = UIManager::InstantiateObject<SpellScaper::Window>(QUrl("qrc:/qmls/Window.qml"));
 
         return UIManager::Instance().app;
@@ -59,8 +59,10 @@ namespace SpellScaper
         return UIManager::Instance().window;
     }
 
+    // Create an instance of QML type and
     QObject* UIManager::InstantiateObject(const QUrl& url, float lifetime)
     {
+        // Create QML component.
         QQmlComponent component(UIManager::Engine(), url);
         if (component.isError())
         {
@@ -68,10 +70,13 @@ namespace SpellScaper
             return nullptr;
         }
 
+        // Create object.
         QObject* object = component.create();
 
+        // Check whether object should be deleted after some time.
         if (lifetime > 0.0f)
         {
+            // Delete object after lifetime
             QTimer::singleShot(lifetime * 1000, object, [object](){ object->deleteLater(); });
         }
 

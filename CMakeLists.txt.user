@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 6.0.1, 2022-01-10T11:38:52. -->
+<!-- Written by QtCreator 6.0.1, 2022-01-10T13:09:22. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -296,9 +296,9 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">ShaderTest</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeRunConfiguration.ShaderTest</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">ShaderTest</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">UIProject</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeRunConfiguration.UIProject</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">UIProject</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>

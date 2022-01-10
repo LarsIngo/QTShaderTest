@@ -10,6 +10,7 @@ namespace SpellScaper
     {
         Q_OBJECT
     private:
+        // The sections of the ping controller.
         enum PingType
         {
             none = -1,

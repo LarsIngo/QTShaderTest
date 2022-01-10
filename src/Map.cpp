@@ -8,13 +8,13 @@ namespace SpellScaper
 {
     Map::Map() : QQuickItem()
     {
-        this->pingController = nullptr;
-        this->setAcceptedMouseButtons(Qt::AllButtons);
+        this->pingController = nullptr; // The current ping controller.
+        this->setAcceptedMouseButtons(Qt::AllButtons); // Accept all mouse inputs.
     }
 
     Map::~Map()
     {
-        this->Clear();
+        this->Clear(); // Clear map when deleted.
     }
 
     void Map::Init()
@@ -23,6 +23,7 @@ namespace SpellScaper
 
     void Map::Clear()
     {
+        // Clear ping controller if not null.
         if (this->pingController != nullptr)
         {
             this->pingController->deleteLater();
@@ -32,17 +33,20 @@ namespace SpellScaper
 
      Map::PingType Map::EvaluatePing(const QVector2D& target)
      {
+         // Chech whether ping controller exists.
          if (this->pingController != nullptr)
          {
+             // Calculate relative size and position.
              QVector2D rootSize = QVector2D( this->pingController->property("width").toReal(), this->pingController->property("height").toReal());
              QVector2D rootCenter = QVector2D(this->pingController->property("x").toReal() + rootSize.x() * 0.5f, this->pingController->property("y").toReal() + rootSize.y() * 0.5f);
 
              QVector2D targetVec = (target - rootCenter);
              QVector2D targetDir = targetVec.normalized();
 
-             float pi = qDegreesToRadians(180);
-             float val = sin(pi * 0.25f);
+             const float pi = qDegreesToRadians(180);
+             const float val = sin(pi * 0.25f);
 
+             // Calculate sector of the ping controller which is actived based on angle between ping controller and target position (mouse position).
              if (targetVec.length() < rootSize.x() * 0.1f)
              {
                 return PingType::center;
@@ -72,14 +76,17 @@ namespace SpellScaper
          return PingType::none;
     }
 
+    // Invokoed when mouse pressed the map.
     void Map::mousePressEvent(QMouseEvent* event)
     {
+        // Check whether ping controller should be created.
         if ((event->buttons() & Qt::LeftButton) && this->pingController == nullptr)
         {
             this->pingController = SpellScaper::UIManager::InstantiateItem<PingController>(QUrl("qrc:/qmls/PingController.qml"));
             this->pingController->Init(event->pos());
         }
 
+        // Check whether radar should be created.
         if (event->buttons() & Qt::RightButton)
         {
             this->Clear();
@@ -88,17 +95,23 @@ namespace SpellScaper
         }
     }
 
+    // Invoked when mouse releases the map.
     void Map::mouseReleaseEvent(QMouseEvent* event)
     {
+        // If ping controller exists, replace ping controller with ping at its position.
         if (this->pingController != nullptr)
         {
             QPoint point = event->pos();
-            PingType pingType = this->EvaluatePing(QVector2D(point.x(), point.y()));
+            PingType pingType = this->EvaluatePing(QVector2D(point.x(), point.y())); // Which section should be active.
+
+            // Whether none or ping controller was canceled.
             if (pingType != PingType::none && pingType != PingType::center)
             {
+                // Calucalte position.
                 QVector2D rootSize = QVector2D( this->pingController->property("width").toReal(), this->pingController->property("height").toReal());
                 QVector2D rootCenter = QVector2D(this->pingController->property("x").toReal() + rootSize.x() * 0.5f, this->pingController->property("y").toReal() + rootSize.y() * 0.5f);
 
+                // Set color and icon based on ping type.
                 QColor color;
                 QUrl icon;
                 switch(pingType) {
@@ -123,6 +136,7 @@ namespace SpellScaper
                         icon =  QUrl();
                 }
 
+                // Create ping.
                 Ping* ping = SpellScaper::UIManager::InstantiateItem<Ping>(QUrl("qrc:/qmls/Ping.qml"), 3.0f);
                 ping->Init(QPoint(rootCenter.x(), rootCenter.y()), color, icon);
             }
@@ -131,8 +145,10 @@ namespace SpellScaper
         }
     }
 
+    // Invoked when mouse is moved.
     void Map::mouseMoveEvent(QMouseEvent* event)
     {
+        // If ping controller exists, updated ping controller section based on mouse position.
         if (this->pingController != nullptr)
         {
             QPoint point = event->pos();

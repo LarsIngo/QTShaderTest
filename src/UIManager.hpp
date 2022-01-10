@@ -25,12 +25,14 @@ namespace SpellScaper
         static QGuiApplication* Initialize(int argc, char *argv[]);
         static QObject* InstantiateObject(const QUrl& url, float lifetime = -1.0f);
 
+        // Instantiate Qt Objects (not Qt Quick Items).
         template <class T>
         static T* InstantiateObject(const QUrl& url, float lifetime = -1.0f)
         {
             return qobject_cast<T*>(UIManager::InstantiateObject(url, lifetime));
         }
 
+        // Instantiate Qt Quick Items.
         template <class T>
         static T* InstantiateItem(const QUrl& url, float lifetime = -1.0f, QQuickItem* parent = nullptr)
         {

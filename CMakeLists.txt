@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-set(PROJECT_NAME ShaderTest)
+set(PROJECT_NAME UIProject)
 
 project(${PROJECT_NAME} VERSION 0.1 LANGUAGES CXX)
 
@@ -110,6 +110,3 @@ qt6_add_shaders(${PROJECT_NAME} "shaders"
     FILES
         ${PROJECT_SHADERS}
 )
-
-set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
-set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)

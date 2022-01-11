@@ -32,4 +32,5 @@ The compiled shaders are accessed using the Qt Resource System (.qrc).
 2. Locate project build folder [eg. .../build-*ProjectName*-Desktop_Qt_6_2_2_MinGW_64_bit-Release].
 3. Locate *windeployqt.exe* in Qt install path [eg. .../Qt/6.2.2/mingw_64/bin/windeployqt.exe].
 4. Execute *windeployqt.exe* in shell with the path to the project build folder as the first argument [.../windeployqt.exe .../build-*ProjectName*-Desktop_Qt_6_2_2_MinGW_64_bit-Release].
+(if *windeployqt* can't find *g++.exe*, it is located in [../Qt/Tools/mingw900_64/bin]. Add to *System Environment Variables* under *Path*).
 5. The build folder should now contain all dependencies.

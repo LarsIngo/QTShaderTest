@@ -13,7 +13,7 @@ SpellScaper.Ping
     property real b: 1
 
     // The icon.
-    property variant icon
+    property string icon
 
     // Shader effect applied to the following image.
     ShaderEffect

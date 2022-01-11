@@ -89,13 +89,19 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
     Qt6::Multimedia
 )
 
+qt_add_qml_module(${PROJECT_NAME}
+    URI qmls
+    VERSION 1.0
+    QML_FILES ${PROJECT_QMLS}
+)
+
 qt6_add_resources(${PROJECT_NAME} "resources"
     PREFIX
         "/"
     FILES
-        ${PROJECT_QMLS}
         ${PROJECT_IMAGES}
         ${PROJECT_SOUNDS}
+        ${PROJECT_QMLS}
 )
 
 qt6_add_shaders(${PROJECT_NAME} "shaders"

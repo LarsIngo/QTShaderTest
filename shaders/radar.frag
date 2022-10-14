@@ -34,9 +34,8 @@ void main() {
 	float angularAlpha = pow(angle, 10);
 	float alpha = radiusAlpha * angularAlpha;
 
-	vec3 radarColor = vec3(0.2, 0.72, 0.2);
     float radarNoise = texture(noiseTex, coord).x;
 	radarNoise = pow(radarNoise, strength) * strength * strength;
 
-	fragColor = mix(vec4(0), vec4(0.2, 0.72, 0.2, 1.0), alpha + radarNoise * alpha);
+	fragColor = mix(vec4(0), vec4(0.2, 0.72, 0.2, 0.0), alpha + radarNoise * alpha) * qt_Opacity;
 }

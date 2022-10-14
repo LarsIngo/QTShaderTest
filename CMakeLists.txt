@@ -48,6 +48,7 @@ set(PROJECT_QMLS
     "qmls/PingController.qml"
     "qmls/Radar.qml"
     "qmls/Window.qml"
+    "qmls/Vfx.qml"
 )
 
 set(PROJECT_IMAGES
@@ -59,6 +60,11 @@ set(PROJECT_IMAGES
     "images/PingIconDown.png"
     "images/PingIconLeft.png"
     "images/PingIconRight.png"
+    "images/Qt_logo.png"
+)
+
+set(PROJECT_MEDIA
+    "media/PingVideo.mp4"
 )
 
 set(PROJECT_SOUNDS
@@ -73,6 +79,10 @@ set(PROJECT_SHADERS
     "shaders/PingController.vert"
     "shaders/Radar.frag"
     "shaders/Radar.vert"
+    "shaders/vfx.frag"
+    "shaders/vfx.vert"
+    "shaders/Qt_logo.frag"
+    "shaders/Qt_logo.vert"
 )
 
 qt_add_executable(${PROJECT_NAME}
@@ -100,6 +110,7 @@ qt6_add_resources(${PROJECT_NAME} "resources"
         "/"
     FILES
         ${PROJECT_IMAGES}
+        ${PROJECT_MEDIA}
         ${PROJECT_SOUNDS}
         ${PROJECT_QMLS}
 )
